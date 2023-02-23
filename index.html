@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Home work</title>
+</head>
+<body>
+    <h2 class="title-task">Task 14</h2>
+    <div class="text-for-task14"></div>
+    <h2 class="title-task">Task 16</h2>
+    <div class="container">
+        <h2>Password Generator</h2>
+        <div class="result-container">
+          <input type="text" id="result-field">
+        </div>
+        <div class="input-wrapper">
+          <div class="input-items">
+            <label>Password length (6-20)</label>
+            <input type="range" id="pass-length-range" min='6' max='20' step="1" />
+            <span id="pass-length-value">13</span>
+          </div>
+        </div>
+        <button class="generate-btn" id="pass-generate-btn">
+          Generate
+        </button>
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
