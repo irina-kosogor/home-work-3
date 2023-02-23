@@ -27,6 +27,10 @@ function getDifference (arr) {
     return Math.max(...arr) - Math.min(...arr);
 }
 
+// console.log(getDifference([1, 2, 3, -4]));
+// console.log(getDifference([16]));
+
+// Task #1
 //Lodash
 
 function getDifferenceLodash (arr) {
@@ -42,8 +46,10 @@ function getDifferenceLodash (arr) {
     return _.max(arr) - _.min(arr);
 }
 
-// Task #2
+// console.log(getDifferenceLodash([1, 2, 3, -4]));
+// console.log(getDifferenceLodash([16]));
 
+// Task #2
 // Native JS
 
 function getArrayWithWords(str, num) {
@@ -54,8 +60,17 @@ function getArrayWithWords(str, num) {
 
     return str.split(" ").filter(item => item.length > num);
 }
-
+// Task #2
 // Lodash
+
+function getArrayWithWords(str, num) {
+    if (!checkItemType(str, "string") || !checkItemType(num, "number")) {
+        console.error(`Not all the values have a valid type`);
+        return;
+    }
+
+    return str.split(" ").filter(item => item.length > num);
+}
 
 // Task 3
 // Native JS
@@ -76,19 +91,18 @@ function checkForEnding(str, ending) {
 // Native JS
 
 // With reduce
-// function getAverage(arr) {
-//     return arr.reduce((acc, curr, idx, arr) => {
-//         if (idx === arr.length - 1) {
-//             return acc;
-//         } 
-//             acc.push((curr + arr[idx + 1]) / 2);
-//         return acc;
-//     }, [])
-
-// }
+function getAverageReduce(arr) {
+    return arr.reduce((acc, curr, idx, arr) => {
+        if (idx === arr.length - 1) {
+            return acc;
+        } 
+            acc.push((curr + arr[idx + 1]) / 2);
+        return acc;
+    }, [])
+}
 
 // With forEach
-function getAverage(arr) {
+function getAverageForEach(arr) {
 	const tempArr = [];
 	arr.forEach((item, i, arr) => {
 		if (i === arr.length - 1) {
@@ -425,12 +439,36 @@ function checkPassValidity(str) {
     return (countUpperChars >= 2 && countAllDigits <= 5);
 }
 
-
 function getRandomChar() {
 	return String.fromCharCode(Math.floor(Math.random() * 90) + 33);
 }
 
+// Task 17
+// Native JS
 
+// function changeElelementsOrder(arr) {
+//     const sortedArr = arr.sort((a, b) => a - b);
+//     return sortedArr.map((item, i, arr) => {
+//         if (i % 2) {
+//             return item
+//         } 
+//         return arr[sortedArr.length - 1];
+//     })
+// }
 
+function changeElelementsOrder(arr) {
+    const sortedArr = arr.sort((a, b) => a - b);
+	const oddIndex = [];
+    const evenIndex = [];
+
+    sortedArr.forEach((item, i) => {
+        (i % 2) ? evenIndex.push(item) : oddIndex.push(item);
+    })
+
+    return oddIndex.concat(evenIndex.reverse());
+}
+
+// console.log(changeElelementsOrder([1,2,3,4,5]))
+// console.log(changeElelementsOrder([1, 5, 9, 12, 54, 3, 9, 45, 10, 15, 2]))
 
 
