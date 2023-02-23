@@ -324,16 +324,15 @@ generateBtn.addEventListener("click", () => {
         generatedPass = generatePassword(passwordLength);
         console.log(generatedPass);
     }
-    while (!checkTwoUpperChars(generatedPass) || !checkFiveDigits(generatedPass)); 
+    while (!checkTwoUpperChars(generatedPass) || !checkFiveDigits(generatedPass) || !checkDigitsSequence(generatedPass)); 
     resultField.value = generatedPass;
 });
 
 function generatePassword(passwordLength) {
 	const generatedPassword = [];
-    const variations = [getRandomNumber, getRandomUpper, getRandomSymbol, getRandomLower]
 
-	for (let i = 0; i < passwordLength - 1; i++) {
-        generatedPassword.push(variations[Math.floor(Math.random() * variations.length)]());
+	for (let i = 0; i < passwordLength; i++) {
+        generatedPassword.push(getRandomChar());
 	}
 
     generatedPassword[Math.floor(Math.random() * passwordLength)] = "_";
@@ -361,20 +360,21 @@ function checkFiveDigits(str) {
     return count <= 5;
 }
 
-function getRandomLower() {
-	return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+function checkDigitsSequence(str) {
+    let count = 0;
+    for (let i = 0; i < str.length; i++) {
+        if (/^\d$/.test(str[i])) {
+            count++;
+        } 
+    }
+    return count >= 2;
 }
 
-function getRandomUpper() {
-	return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+function getRandomChar() {
+	return String.fromCharCode(Math.floor(Math.random() * 90) + 33);
 }
 
-function getRandomNumber() {
-	return String.fromCharCode(Math.floor(Math.random() * 6) + 48);
-}
 
-function getRandomSymbol() {
-    const symbols = '!@#$%^&*(){}[]=<>/'
-    return symbols[Math.floor(Math.random() * symbols.length)];
-}
+
+
 
