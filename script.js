@@ -303,6 +303,71 @@ showTextOnPage(contentText);
 // Task 15
 // Native JS
 
+const inputField = document.querySelector("#phrase-input-field");
+const resultBlock = document.querySelector("#phrase-result-block");
+const list = document.querySelector('#list');
+
+function debounce(func, timeout = 1000) {
+	let timerId;
+	return (...args) => {
+		clearTimeout(timerId);
+		timerId = setTimeout(() => {
+			func.apply(this, args);
+		}, timeout);
+	};
+}
+
+function postResult() {
+	let data = inputField.value;
+    const arrData = data.split(" ").filter(item => item !== '').map((item, i) => {
+        if (i === 0) {
+            return item.toUpperCase();
+        }
+        if (i === data.split(" ").length - 1 || i === data.split(" ").length - 2) {
+            return item.toLowerCase();
+        }
+        return item;
+    })
+    arrData.forEach(item => {
+        const listItem = document.createElement('li');
+        listItem.textContent = item;
+        list.append(listItem);
+    })
+}
+
+function countA() {
+    let count = 0;
+    let data = inputField.value;
+    for (let i = 0; i < data.length; i++) {
+        if (data[i] === 'a') {
+            count++;
+        }
+    }
+    return count;
+} 
+
+const alertCountA = debounce(() => {
+    alert(`Number of 'a' is ${countA()}`)
+});
+
+const pingUser = debounce(() => {
+    setTimeout(() => {
+        if (!confirm("Are you still here?")) {
+            window.close();
+        }
+    }, 300000);
+});
+
+const processChange = debounce(() => {
+    postResult();
+    alertCountA();
+    pingUser();
+});
+
+inputField.addEventListener("input", () => {
+    list.innerHTML = "";
+    processChange();
+});
 
 
 // Task 16
@@ -320,11 +385,11 @@ passLengthRange.addEventListener("change", (e) => {
 generateBtn.addEventListener("click", () => {
 	const passwordLength = passLengthRange.value;
     let generatedPass = "";
+
     do {
         generatedPass = generatePassword(passwordLength);
-        console.log(generatedPass);
     }
-    while (!checkTwoUpperChars(generatedPass) || !checkFiveDigits(generatedPass) || !checkDigitsSequence(generatedPass)); 
+    while (!checkPassValidity(generatedPass)); 
     resultField.value = generatedPass;
 });
 
@@ -340,35 +405,26 @@ function generatePassword(passwordLength) {
 	return generatedPassword.join('');
 }
 
-function checkTwoUpperChars(str) {
-    let count = 0;
+function checkPassValidity(str) {
+    let countUpperChars = 0;
+    let countAllDigits = 0;
+
     for (let i = 0; i < str.length; i++) {
         if (/[A-Z]/.test(str[i])) {
-            count++;
+            countUpperChars++;
         }
-    }
-    return count >= 2;
-}
-
-function checkFiveDigits(str) {
-    let count = 0;
-    for (let i = 0; i < str.length; i++) {
         if (/\d+/g.test(str[i])) {
-            count++;
+            countAllDigits++;
         }
     }
-    return count <= 5;
+    
+    if (/\d[2,]/.test(str)) {
+        return false
+    }
+
+    return (countUpperChars >= 2 && countAllDigits <= 5);
 }
 
-function checkDigitsSequence(str) {
-    let count = 0;
-    for (let i = 0; i < str.length; i++) {
-        if (/^\d$/.test(str[i])) {
-            count++;
-        } 
-    }
-    return count >= 2;
-}
 
 function getRandomChar() {
 	return String.fromCharCode(Math.floor(Math.random() * 90) + 33);
