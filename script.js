@@ -1,17 +1,38 @@
 'use strict';
 
-// Function for checking data types used in further code
+// Functions for checking data types used in further code
 
-function checkAllItemsTypes(arr, dataType) {
+// Checks if item is array 
+function checkIfArray (arr) {
+    return Array.isArray(arr);
+}
+
+//Checks datatypes of the elements in array
+function checkAllItemsTypes (arr, dataType) {
     return arr.every(item => typeof item === dataType);
 }
 
-function checkItemType(item, dataType) {
+// Checks if item is object
+function isObject (obj) {
+    return (typeof obj === "object" && !Array.isArray(obj) && obj !== null);
+}
+
+// Checks if object is empty
+function isEmptyObject (obj) {
+    for(let prop in obj) {
+        if(obj.hasOwnProperty(prop)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+//Checks datatypes of primitive values
+function checkItemType (item, dataType) {
     return typeof item === dataType;
 }
 
 // Task #1
-
 // Native JS
 
 function getDifference (arr) {
@@ -19,7 +40,7 @@ function getDifference (arr) {
         return 0;
     }
     
-    if (!checkAllItemsTypes(arr, "number")) {
+    if (!checkIfArray(arr) || !checkAllItemsTypes(arr, "number")) {
         console.error(`Not all the values have a valid type`);
         return;
     }
@@ -38,7 +59,7 @@ function getDifferenceLodash (arr) {
         return 0;
     }
 
-    if (!checkAllItemsTypes(arr, "number")) {
+    if (!_.isArray(arr) || !checkAllItemsTypes(arr, "number")) {
         console.error(`Not all the values have a valid type`);
         return;
     }
@@ -60,17 +81,22 @@ function getArrayWithWords(str, num) {
 
     return str.split(" ").filter(item => item.length > num);
 }
+// console.log(getArrayWithWords('Lorem, ipsum dolor sit amet consectetu, ex minus sunt', 6))
+
 // Task #2
 // Lodash
 
-function getArrayWithWords(str, num) {
-    if (!checkItemType(str, "string") || !checkItemType(num, "number")) {
+function getArrayWithWordsLodash(str, num) {
+    if (!_.isString(str) || !_.isNumber(num)) {
         console.error(`Not all the values have a valid type`);
         return;
     }
-
-    return str.split(" ").filter(item => item.length > num);
+    
+    const arr = _.split(str, " ");
+    return _.filter(arr, (item) => item.length > num);
 }
+
+// console.log(getArrayWithWordsLodash('Lorem, ipsum dolor sit amet consectetur adipisicing elit', 6));
 
 // Task 3
 // Native JS
@@ -87,11 +113,31 @@ function checkForEnding(str, ending) {
 // console.log(checkForEnding('abc', 'bc'));
 // console.log(checkForEnding('abc', 'd'));
 
+// Task 3
+// Lodash
+
+function checkForEndingLodash(str, ending) {
+    if (!_.isString(str) || !_.isString(ending)) {
+        console.error(`Not all the values have a valid type`);
+        return;
+    }
+
+    return _.endsWith(str, ending);
+}
+
+// console.log(checkForEndingLodash('abc', 'bc'));
+// console.log(checkForEndingLodash('abc', 'd'));
+
 // Task 4
 // Native JS
 
 // With reduce
 function getAverageReduce(arr) {
+   if (!checkIfArray(arr) || !checkAllItemsTypes(arr, "number")) {
+        console.error(`Not all the values have a valid type`);
+        return;
+    }
+
     return arr.reduce((acc, curr, idx, arr) => {
         if (idx === arr.length - 1) {
             return acc;
@@ -101,34 +147,77 @@ function getAverageReduce(arr) {
     }, [])
 }
 
+// console.log(getAverageReduce([1, 3, 5, 1, -10]));
+// console.log(getAverageReduce([2, -2, 2, -2, 2]));
+
 // With forEach
 function getAverageForEach(arr) {
-	const tempArr = [];
+    if (!checkIfArray(arr) || !checkAllItemsTypes(arr, "number")) {
+        console.error(`Not all the values have a valid type`);
+        return;
+    }
+    
+    const resultArr = [];
+
 	arr.forEach((item, i, arr) => {
 		if (i === arr.length - 1) {
 			return;
 		}
-		tempArr.push((item + arr[i + 1]) / 2);
+		resultArr.push((item + arr[i + 1]) / 2);
 	});
-	return tempArr;
+
+	return resultArr;
 }
 
-// console.log(getAverage([1, 3, 5, 1, -10]));
-// console.log(getAverage([2, -2, 2, -2, 2]));
+// console.log(getAverageForEach([1, 3, 5, 1, -10]));
+// console.log(getAverageForEach([2, -2, 2, -2, 2]));
+
+// Task 4
+// Lodash
+
+function getAverageLodash(arr) {
+    if (!_.isArray(arr) || !checkAllItemsTypes(arr, "number")) {
+        console.error(`Not all the values have a valid type`);
+        return;
+    }
+    
+	const resultArr = [];
+    _.forEach(arr, function(item, i, arr) {
+        if (i === arr.length - 1) {
+			return;
+		}
+		resultArr.push((item + arr[i + 1]) / 2);
+    })
+    return resultArr;
+}
+
+// console.log(getAverageLodash([1, 3, 5, 1, -10]));
+// console.log(getAverageLodash([2, -2, 2, -2, 2]));
 
 // Task 5
 // Native JS
 
 // With ReqExp
+function countVowelsReqExp(str) {
+    if (!checkItemType(str, "string")) {
+        console.error(`Not all the values have a valid type`);
+        return;
+    }
+    
+	const matches = str.toLowerCase().match(/[aeiouy]/gi);
+	return matches ? matches.length : 0;
+}
 
-// function countVowels(str) {
-// 	const matches = str.toLowerCase().match(/[aeiouy]/gi);
-// 	return matches ? matches.length : 0;
-// }
+// console.log(countVowelsReqExp("Celebration"));
+// console.log(countVowelsReqExp("Palm"));
 
 // With forEach
-
 function countVowels(str) {
+    if (!checkItemType(str, "string")) {
+        console.error(`Not all the values have a valid type`);
+        return;
+    }
+
 	const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
 	let count = 0;
 	str.toLowerCase().split('').forEach((item) => vowels.indexOf(item) !== -1 ? count += 1: 0);
@@ -142,6 +231,11 @@ function countVowels(str) {
 // Native JS
 
 function removeABC(str) {
+    if (!checkItemType(str, "string")) {
+        console.error(`Not all the values have a valid type`);
+        return;
+    }
+
 	const pattern = new RegExp(/[abcABC]/gi);
 
 	if (!str.match(pattern)) {
@@ -158,15 +252,44 @@ function removeABC(str) {
 // Native JS
 
 function findUnique(arr1, arr2) {
+    if (!checkIfArray(arr1) || !checkIfArray(arr2)) {
+		console.error(`Not all the values have a valid type`);
+		return;
+	}
+    
 	return Array.from(new Set(arr1.concat(arr2))).sort((a, b) => a - b);
 }
 
 // console.log(findUnique([1, 2, 3], [100, 2, 1, 10]));
 
+// Task 6
+// Lodash
+
+function findUniqueLodash(arr1, arr2) {
+    if (!_.isArray(arr1) && !_.isArray(arr2)) {
+		console.error(`Not all the values have a valid type`);
+		return;
+	}
+    
+	return _.sortedUniq(_.sortBy([...arr1, ...arr2]));
+}
+
+// console.log(findUniqueLodash([1, 2, 3], [100, 2, 1, 10]));
+
 // Task 7
 // Native JS
 
 function changeKeysWithValues(obj) {
+    if (!isObject(obj)) {
+        console.error(`It's not an object`);
+        return;
+    }
+
+    if (isEmptyObject(obj)) {
+        console.error(`Object does not contain any elements`);
+        return;
+    }
+
 	const changedObj = {};
 
 	for (let key in obj) {
@@ -177,19 +300,36 @@ function changeKeysWithValues(obj) {
 }
 
 // console.log(changeKeysWithValues({red: "#FF0000", green: "#00FF00", white: "#FFFFFF"}));
+// console.log(changeKeysWithValues([1, 3, 4, 2]));
 
 // Task 8
 // Native JS
 
 function calculateInsuranceDifference(obj, limit) {
-	let diffeernce = 0;
-    for (let key in obj) {
-        diffeernce += obj[key];
+    if (!isObject(obj) || !checkItemType(limit, "number")) {
+        console.error(`Not all the items have a valid type`);
+        return;
     }
-    return diffeernce - limit;
+    
+    if (isEmptyObject(obj)) {
+        console.error(`Object does not contain any elements`);
+        return;
+    }
+
+	let sum = 0;
+    for (let key in obj) {
+        sum += obj[key];
+    }
+    
+    if (sum < limit) {
+        console.log(`Sum of the elements are lower than an insurance value`);
+        return;
+    }
+
+    return sum - limit;
 }
 
-// console.log(calculateInsuranceDifference({"baseball bat": 20 }, 5));
+// console.log(calculateInsuranceDifference({"baseball bat": 20}, 5));
 // console.log(calculateInsuranceDifference({ skate: 10, painting: 20 }, 19));
 // console.log(calculateInsuranceDifference({ skate: 200, painting: 200, shoes: 1 }, 400));
 
@@ -197,7 +337,18 @@ function calculateInsuranceDifference(obj, limit) {
 // Native JS
 
 function checkIfBrickFits(a, b, c, w, h) {
-   return (a <= w && c <= h);
+	if (
+		!checkItemType(a, "number") 
+		|| !checkItemType(b, "number") 
+		|| !checkItemType(c, "number")
+        || !checkItemType(w, "number")
+        || !checkItemType(h, "number")
+	) {
+		console.error(`Not all the values have a valid type`);
+		return;
+	}
+
+	return a <= w && c <= h ? true : false;
 }
 
 // console.log(checkIfBrickFits(1, 1, 1, 1, 1));
@@ -208,8 +359,13 @@ function checkIfBrickFits(a, b, c, w, h) {
 // Native JS
 
 function getFileName(url) {
-  let fileName = url.split('\\');
-  return fileName[fileName.length - 1].split(".")[0];
+	if (!checkItemType(url, "string")) {
+		console.error(`Not all the values have a valid type`);
+		return;
+	}
+
+	let fileName = url.split("\\");
+	return fileName[fileName.length - 1].split(".")[0];
 }
 
 // console.log(getFileName('c:\\WebServers\\home\\testsite\\www\\myfile.txt'));
@@ -218,6 +374,11 @@ function getFileName(url) {
 // Native JS
 
 function checkStrings(str1, str2) {
+    if (!checkItemType(str1, "string") || !checkItemType(str2, "string")) {
+        console.error(`Not all the values have a valid type`);
+        return;
+    }
+    
     return str1.length === str2.length && str2.repeat(2).includes(str1);
 }
 
@@ -225,33 +386,90 @@ function checkStrings(str1, str2) {
 // console.log(checkStrings('irina', 'inair'));
 // console.log(checkStrings('irina', 'inira'));
 
+// Task 11
+// Lodash
+
+function checkStringsLodash(str1, str2) {
+    if (!_.isString(str1) || !_.isString(str2)) {
+        console.error(`Not all the values have a valid type`);
+        return;
+    }
+
+    if (_.size(str1) !== _.size(str2)) {
+        return false;
+      }
+      
+    return _.includes((str1 + str1), str2);
+}
+
+// console.log(checkStringsLodash('irina', 'rinai'));
+// console.log(checkStringsLodash('irina', 'inair'));
+// console.log(checkStringsLodash('irina', 'inira'));
+
 // Task 12
 // Native JS
 
 function composeArrays(a) {
-  const sortedArr = a.sort((a, b) => a - b);
-  const initialArrLength = a.length;
-  const b = [];
-  const c = [];
-  
-  for (let i = 0; i < initialArrLength / 2; i++) {
-    b.push(sortedArr[0]);
-    c.push(sortedArr[1]);
-    sortedArr.splice(0, 2);
-    continue;
-  }
+    if (!checkIfArray(a) || !checkAllItemsTypes(a, "number")) {
+        console.error(`Not all the values have a valid type`);
+        return;
+    }
 
-  return `Array b: [${b}]; array c: [${c}]`;
+	const sortedArr = a.sort((a, b) => a - b);
+	const initialArrLength = a.length;
+	const b = [];
+	const c = [];
+
+	for (let i = 0; i < initialArrLength / 2; i++) {
+		b.push(sortedArr[0]);
+		c.push(sortedArr[1]);
+		sortedArr.splice(0, 2);
+		continue;
+	}
+
+	return `Array b: [${b}], array c: [${c}]`;
 }
 
 // console.log(composeArrays([2, 9, 6, 8, 5, 3]));
 // console.log(composeArrays([1950, 1960, 1970, 1980, 1990, 2000, 2010, 1988]));
 // console.log(composeArrays([-1950, -1960, -1970, -1980]));
 
+// Task 12
+// Lodash
+
+function composeArraysLodash(a) {
+    if (!_.isArray(a) || !checkAllItemsTypes(a, "number")) {
+        console.error(`Not all the values have a valid type`);
+        return;
+    }
+
+    const b = [];
+    const c = [];
+
+    const sortedArr = _.sortBy(a);
+
+    for (let i = 0; i < _.size(sortedArr); i+= 2) {
+        b.push(sortedArr[i]);
+		c.push(sortedArr[i + 1]);
+        _.slice(sortedArr, 0, 2);
+    }
+  
+    return `Array b: [${b}]; array c: [${c}]`;
+  }
+  
+//   console.log(composeArraysLodash([2, 9, 6, 8, 5, 3])); 
+//   console.log(composeArraysLodash([1950, 1960, 1970, 1980, 1990, 2000, 2010, 1988]));
+// console.log(composeArraysLodash([-1950, -1960, -1970, -1980]));
+
 // Task 13
 // Native JS
 
 function composeNewString(str) {
+    if (!checkItemType(str, "string")) {
+        console.error(`Not all the values have a valid type`);
+        return;
+    }
+
 	const patternForUrl =
 		/((http|https):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/gim;
 	const patternForEmail =
@@ -284,6 +502,11 @@ const textBlock = document.querySelector('.text-for-task14');
 const contentText = "Lorem ipsum dolor sit amet (consectetur adipisicing elit). Exercitationem expedita recusandae,  (sapiente quasi?) Ipsa, atque nesciunt. (Cum dicta), placeat soluta adipisci iste assumenda tempore?"
 
 function checkForBrackets(str) {
+    if (!checkItemType(str, "string")) {
+        console.error(`Not all the values have a valid type`);
+        return;
+    }
+
     const arr = str.split("").filter(item => item === "(" || item === ")");
     let stack = [];
 
@@ -299,6 +522,11 @@ function checkForBrackets(str) {
 }
 
 function showTextOnPage(str) {
+    if (!checkItemType(str, "string")) {
+        console.error(`Not all the values have a valid type`);
+        return;
+    }
+
     if (checkForBrackets(str)) {
         textBlock.textContent = str;
     } else {
@@ -446,17 +674,12 @@ function getRandomChar() {
 // Task 17
 // Native JS
 
-// function changeElelementsOrder(arr) {
-//     const sortedArr = arr.sort((a, b) => a - b);
-//     return sortedArr.map((item, i, arr) => {
-//         if (i % 2) {
-//             return item
-//         } 
-//         return arr[sortedArr.length - 1];
-//     })
-// }
-
 function changeElelementsOrder(arr) {
+    if (!checkIfArray(arr) || !checkAllItemsTypes(arr, "number")) {
+        console.error(`Not all the values have a valid type`);
+        return;
+    }
+
     const sortedArr = arr.sort((a, b) => a - b);
 	const oddIndex = [];
     const evenIndex = [];
@@ -468,7 +691,28 @@ function changeElelementsOrder(arr) {
     return oddIndex.concat(evenIndex.reverse());
 }
 
-// console.log(changeElelementsOrder([1,2,3,4,5]))
-// console.log(changeElelementsOrder([1, 5, 9, 12, 54, 3, 9, 45, 10, 15, 2]))
+// console.log(changeElelementsOrder([1,2,3,4,5]));
+// console.log(changeElelementsOrder([1, 5, 9, 12, 54, 3, 9, 45, 10, 15, 2]));
 
+// Task 17
+// Lodash
 
+function changeElelementsOrder(arr) {
+    if (!_.isArray(arr) || !checkAllItemsTypes(arr, "number")) {
+        console.error(`Not all the values have a valid type`);
+        return;
+    }
+
+    const sortedArr = _.sortBy(arr);
+	const oddIndex = [];
+    const evenIndex = [];
+
+    _.forEach(sortedArr, function(item, i) {
+        (i % 2) ? evenIndex.push(item) : oddIndex.push(item);
+    })
+
+    return _.concat(oddIndex, _.reverse(evenIndex));
+}
+
+// console.log(changeElelementsOrder([1,2,3,4,5]));
+// console.log(changeElelementsOrder([1, 5, 9, 12, 54, 3, 9, 45, 10, 15, 2]));
