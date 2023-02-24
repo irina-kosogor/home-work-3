@@ -1056,6 +1056,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_task15__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./modules/task15 */ "./js/modules/task15.js");
 /* harmony import */ var _modules_task16__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./modules/task16 */ "./js/modules/task16.js");
 /* harmony import */ var _modules_task17__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./modules/task17 */ "./js/modules/task17.js");
+/**
+ * NOTE 
+ * All tasks are placed in different scripts/modules in the folder "modules" 
+ * with the correspondent names
+ * e.g. Task 1 in file "task1.js" 
+ * Current "main.js" file is used for Webpack as entry point and contains 
+ * function calls and tests of the functionality
+ * Feel free to comment/uncomment or add your own tests below.
+ * Please don't make any changes in the module imports.
+ */
+
 
 
 
@@ -1168,6 +1179,8 @@ console.log((0,_modules_task12__WEBPACK_IMPORTED_MODULE_12__.composeArraysLodash
 
 // Task13 Native JS:
 console.log((0,_modules_task13__WEBPACK_IMPORTED_MODULE_13__.composeNewString)('quisquam 34578 like so: https://t.co/74DfkMG5FB dolLOibus sdfsdfr@gmail.com blanditiis SApiente dolore 123 maXime'))
+/** Test case for having new string longer than initial one
+ * it is commented not to have alert popping up every 5 seconds*/ 
 // console.log(composeNewString('quisquam 34578 like so: https://t.co/74 sdfsdfr@gmail.com bland SApiente dolore 123 maXime'))
 
 // Task14 Native JS:

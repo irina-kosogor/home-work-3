@@ -1,3 +1,14 @@
+/**
+ * NOTE 
+ * All tasks are placed in different scripts/modules in the folder "modules" 
+ * with the correspondent names
+ * e.g. Task 1 in file "task1.js" 
+ * Current "main.js" file is used for Webpack as entry point and contains 
+ * function calls and tests of the functionality
+ * Feel free to comment/uncomment or add your own tests below.
+ * Please don't make any changes in the module imports.
+ */
+
 import {getDifference, getDifferenceLodash} from './modules/task1';
 import {getArrayWithWords, getArrayWithWordsLodash} from './modules/task2';
 import {checkForEnding, checkForEndingLodash} from './modules/task3';
@@ -110,6 +121,8 @@ console.log(composeArraysLodash([-1950, -1960, -1970, -1980]));
 
 // Task13 Native JS:
 console.log(composeNewString('quisquam 34578 like so: https://t.co/74DfkMG5FB dolLOibus sdfsdfr@gmail.com blanditiis SApiente dolore 123 maXime'))
+/** Test case for having new string longer than initial one
+ * it is commented not to have alert popping up every 5 seconds*/ 
 // console.log(composeNewString('quisquam 34578 like so: https://t.co/74 sdfsdfr@gmail.com bland SApiente dolore 123 maXime'))
 
 // Task14 Native JS:
