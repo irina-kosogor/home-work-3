@@ -17,6 +17,7 @@ export const createPassword = () => {
 
 		do {
 			generatedPass = generatePassword(passwordLength);
+			console.log(generatePassword);
 		} while (!checkPassValidity(generatedPass));
 		resultField.value = generatedPass;
 	});
@@ -36,6 +37,7 @@ export const createPassword = () => {
 	function checkPassValidity(str) {
 		let countUpperChars = 0;
 		let countAllDigits = 0;
+		let countUnderScores = 0;
 
 		for (let i = 0; i < str.length; i++) {
 			if (/[A-Z]/.test(str[i])) {
@@ -44,13 +46,16 @@ export const createPassword = () => {
 			if (/\d+/g.test(str[i])) {
 				countAllDigits++;
 			}
+			if (/_+/g.test(str[i])) {
+				countUnderScores++;
+			}
 		}
 
 		if (/\d[2,]/.test(str)) {
 			return false;
 		}
 
-		return countUpperChars >= 2 && countAllDigits <= 5;
+		return countUpperChars >= 2 && countAllDigits <= 5 && countUnderScores <= 1;
 	}
 
 	function getRandomChar() {
