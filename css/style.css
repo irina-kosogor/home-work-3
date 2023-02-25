@@ -11,6 +11,17 @@
     text-align: center;
 }
 
+fieldset {
+    padding: 20px 10px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid var(--lightgray);
+    border-radius: 20px;
+    margin-bottom: 25px;
+}
+
 .text-for-task14 {
     width: 50vw;
     margin: 2rem auto;
@@ -54,13 +65,13 @@ body {
     background: #f4f4f4;
 }
 
-input[type="text"] {
+input[type="text"], input[type="number"] {
     padding: 20px 24px;
     border: 1px solid var(--lightgray);
     border-radius: 50px;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus, input[type="number"]:focus {
     outline: none;
     border: #308CEF 1px solid;
 }
@@ -77,12 +88,20 @@ input[type="range"] {
     margin-top: 3rem;
 }
 
-#phrase-result-block {
+#phrase-result-block,  #brick-result-block{
     width: 100%;
     min-height: 100px;
     border-radius: 10px;
     background-color: #f4f4f4;
     border: 1px solid var(--lightgray);
+}
+
+#brick-result-block {
+    min-height: 60px;
+    margin-bottom: 30px;
+    text-align: center;
+    padding-top: 30px;
+    font-weight: bold;
 }
 
 .input-items {

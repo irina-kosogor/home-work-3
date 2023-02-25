@@ -12,19 +12,19 @@
 import {getDifference, getDifferenceLodash} from './modules/task1';
 import {getArrayWithWords, getArrayWithWordsLodash} from './modules/task2';
 import {checkForEnding, checkForEndingLodash} from './modules/task3';
-import {getAverageReduce, getAverageForEach, getAverageLodash} from './modules/task4';
+import {getAdjacentPairAverageReduce, getAdjacentPairAverageForEach, getAdjacentPairAverageLodash} from './modules/task4';
 import {countVowelsReqExp, countVowels} from './modules/task5';
 import {removeABC} from './modules/task5-2';
 import {findUnique, findUniqueLodash} from './modules/task6';
 import {changeKeysWithValues} from './modules/task7';
 import {calculateInsuranceDifference} from './modules/task8';
-import {checkIfBrickFits} from './modules/task9';
+import {checkIfBrickFitsHole} from './modules/task9';
 import {getFileName} from './modules/task10';
 import {checkStrings, checkStringsLodash} from './modules/task11';
 import {composeArrays, composeArraysLodash} from './modules/task12';
 import {composeNewString} from './modules/task13';
-import {checkBracketsBalance} from './modules/task14';
-import {makeInput} from './modules/task15';
+import {showTextOnPage} from './modules/task14';
+import {postInputOnPage} from './modules/task15';
 import {createPassword} from './modules/task16';
 import {changeElelementsOrder, changeElelementsOrderLodash} from './modules/task17';
 
@@ -53,16 +53,16 @@ console.log(checkForEndingLodash('abc', 'd'));
 
 // Task4 Native JS:
 // With reduce
-console.log(getAverageReduce([1, 3, 5, 1, -10]));
-console.log(getAverageReduce([2, -2, 2, -2, 2]));
+console.log(getAdjacentPairAverageReduce([1, 3, 5, 1, -10]));
+console.log(getAdjacentPairAverageReduce([2, -2, 2, -2, 2]));
 
 // With forEach
-console.log(getAverageForEach([1, 3, 5, 1, -10]));
-console.log(getAverageForEach([2, -2, 2, -2, 2]));
+console.log(getAdjacentPairAverageForEach([1, 3, 5, 1, -10]));
+console.log(getAdjacentPairAverageForEach([2, -2, 2, -2, 2]));
 
 // Task4 Lodash:
-console.log(getAverageLodash([1, 3, 5, 1, -10]));
-console.log(getAverageLodash([2, -2, 2, -2, 2]));
+console.log(getAdjacentPairAverageLodash([1, 3, 5, 1, -10]));
+console.log(getAdjacentPairAverageLodash([2, -2, 2, -2, 2]));
 
 // Task5 Native JS:
 // With ReqExp
@@ -92,15 +92,13 @@ console.log(calculateInsuranceDifference({ skate: 10, painting: 20 }, 19));
 console.log(calculateInsuranceDifference({ skate: 200, painting: 200, shoes: 1 }, 400));
 
 // Task9 Native JS:
-console.log(checkIfBrickFits(1, 1, 1, 1, 1));
-console.log(checkIfBrickFits(1, 2, 1, 1, 1));
-console.log(checkIfBrickFits(1, 2, 2, 1, 1));
+checkIfBrickFitsHole();
 
 // Task10 Native JS:
 console.log(getFileName('c:\\WebServers\\home\\testsite\\www\\myfile.txt'));
 
 // Task11 Native JS:
-console.log(checkStrings('irina', 'rinai'));
+console.log('Task11 native js', checkStrings('irina', 'rinai'));
 console.log(checkStrings('irina', 'inair'));
 console.log(checkStrings('irina', 'inira'));
 
@@ -126,10 +124,13 @@ console.log(composeNewString('quisquam 34578 like so: https://t.co/74DfkMG5FB do
 // console.log(composeNewString('quisquam 34578 like so: https://t.co/74 sdfsdfr@gmail.com bland SApiente dolore 123 maXime'))
 
 // Task14 Native JS:
-checkBracketsBalance();
+const contentText =
+"Lorem ipsum dolor sit amet ((consectetur adipisicing elit)). Exercitationem expedita recusandae,  (sapiente quasi?) Ipsa, atque nesciunt. (Cum dicta), placeat soluta adipisci iste assumenda tempore?";
+
+showTextOnPage(contentText);
 
 // Task15 Native JS:
-makeInput();
+postInputOnPage();
 
 // Task16 Native JS:
 createPassword();

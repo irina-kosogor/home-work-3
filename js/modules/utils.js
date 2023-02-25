@@ -7,7 +7,8 @@ export function checkIfArray(arr) {
 
 //Checks datatypes of the elements in array
 export function checkAllItemsTypes(arr, dataType) {
-	return arr.every((item) => typeof item === dataType);
+	return arr.every((item) => checkItemType(item, dataType));
+	// return arr.every((item) => typeof item === dataType);
 }
 
 // Checks if item is object

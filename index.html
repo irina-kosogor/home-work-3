@@ -1,49 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Home work</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework</title>
 </head>
+
 <body>
-    <h2 class="title-task">Task 14</h2>
-    <div class="text-for-task14"></div>
+	<h2 class="title-task">Task 9</h2>
+	<div class="container">
+		<h2>Dimensions go here:</h2>
+		<div class="input-wrapper">
+			<form class="brick-form" action="#">
+				<fieldset class="brick-dimenstions">
+					<legend>Brick dimensions</legend>
+					<input type="number" id="brick-input-heigth" required placeholder="Start typing here...">
+					<label for="brick-input-brick-heigth">Brick height </label>
+					<input type="number" id="brick-input-width" required placeholder="Start typing here...">
+					<label for="brick-input-brick-width">Brick width </label>
+					<input type="number" id="brick-input-depth" required placeholder="Start typing here...">
+					<label for="brick-input-brick-depth">Brick depth </label>
+				</fieldset>
+				<fieldset class="hole-dimensions">
+					<legend>Hole dimensions</legend>
+					<input type="number" id="hole-input-heigth" required placeholder="Start typing here...">
+					<label for="brick-input-hole-heigth">Hole height </label>
+					<input type="number" id="hole-input-width" required placeholder="Start typing here...">
+					<label for="brick-input-hole-width">Hole width </label>
+				</fieldset>
+				<h2>Your result goes here:</h2>
+				<div id="brick-result-block"></div>
+				<button class="generate-btn" id="brick-check-btn">
+					Check
+				</button>
+			</form>
+		</div>
+	</div>
 
-    <h2 class="title-task">Task 15</h2>
-    <div class="container">
-      <h2>Input your phrase here:</h2>
-      <div class="input-wrapper">
-        <div class="phrase-result-container">
-          <input type="text" id="phrase-input-field" placeholder="Start typing here...">
-          <h2>Your result goes here:</h2>
-          <div id="phrase-result-block">
-            <ul id="list"></ul>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <h2 class="title-task">Task 16</h2>
-    <div class="container">
-        <h2>Password Generator</h2>
-        <div class="result-container">
-          <input type="text" id="result-field">
-        </div>
-        <div class="input-wrapper">
-          <div class="input-items">
-            <label>Password length (6-20)</label>
-            <input type="range" id="pass-length-range" min='6' max='20' step="1" />
-            <span id="pass-length-value">13</span>
-          </div>
-        </div>
-        <button class="generate-btn" id="pass-generate-btn">
-          Generate
-        </button>
-      </div>
+	<h2 class="title-task">Task 14</h2>
+	<div class="text-for-task14"></div>
 
-    <script src="js/lodash.min.js"></script>
-    <script src="js/bundle.js"></script>
+	<h2 class="title-task">Task 15</h2>
+	<div class="container">
+		<h2>Input your phrase here:</h2>
+		<div class="input-wrapper">
+			<div class="phrase-result-container">
+				<input type="text" id="phrase-input-field" placeholder="Start typing here...">
+				<h2>Your result goes here:</h2>
+				<div id="phrase-result-block">
+					<ul id="list"></ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<h2 class="title-task">Task 16</h2>
+	<div class="container">
+		<h2>Password Generator</h2>
+		<div class="result-container">
+			<input type="text" id="result-field">
+		</div>
+		<div class="input-wrapper">
+			<div class="input-items">
+				<label>Password length (6-20)</label>
+				<input type="range" id="pass-length-range" min='6' max='20' step="1" />
+				<span id="pass-length-value">13</span>
+			</div>
+		</div>
+		<button class="generate-btn" id="pass-generate-btn">
+			Generate
+		</button>
+	</div>
+
+	<script src="js/lodash.min.js"></script>
+	<script src="js/bundle.js"></script>
 </body>
+
 </html>

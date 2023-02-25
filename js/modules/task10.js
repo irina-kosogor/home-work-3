@@ -1,11 +1,11 @@
-import {checkItemType} from './utils';
+import { checkItemType } from "./utils";
 
 // Task 10
 // Native JS
 
 export function getFileName(url) {
 	if (!checkItemType(url, "string")) {
-		console.error(`Not all the values have a valid type`);
+		console.error("Not all the values have a valid type");
 		return;
 	}
 

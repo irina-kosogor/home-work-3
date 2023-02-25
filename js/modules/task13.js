@@ -1,10 +1,10 @@
-import {checkItemType} from './utils';
+import { checkItemType } from "./utils";
 // Task 13
 // Native JS
 
 export function composeNewString(str) {
     if (!checkItemType(str, "string")) {
-        console.error(`Not all the values have a valid type`);
+        console.error("Not all the values have a valid type");
         return;
     }
 

@@ -4,9 +4,9 @@ import { checkIfArray, checkAllItemsTypes } from "./utils";
 // Native JS
 
 // With reduce
-export function getAverageReduce(arr) {
+export function getAdjacentPairAverageReduce(arr) {
 	if (!checkIfArray(arr) || !checkAllItemsTypes(arr, "number")) {
-		console.error(`Not all the values have a valid type`);
+		console.error("Not all the values have a valid type");
 		return;
 	}
 
@@ -20,9 +20,9 @@ export function getAverageReduce(arr) {
 }
 
 // With forEach
-export function getAverageForEach(arr) {
+export function getAdjacentPairAverageForEach(arr) {
 	if (!checkIfArray(arr) || !checkAllItemsTypes(arr, "number")) {
-		console.error(`Not all the values have a valid type`);
+		console.error("Not all the values have a valid type");
 		return;
 	}
 
@@ -40,9 +40,9 @@ export function getAverageForEach(arr) {
 
 // Task 4
 // Lodash
-export function getAverageLodash(arr) {
+export function getAdjacentPairAverageLodash(arr) {
 	if (!_.isArray(arr) || !checkAllItemsTypes(arr, "number")) {
-		console.error(`Not all the values have a valid type`);
+		console.error("Not all the values have a valid type");
 		return;
 	}
 

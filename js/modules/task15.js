@@ -1,7 +1,7 @@
 // Task 15
 // Native JS
 
-export const makeInput = () => {
+export const postInputOnPage = () => {
 	const inputField = document.querySelector("#phrase-input-field");
 	const list = document.querySelector("#list");
 
@@ -20,13 +20,13 @@ export const makeInput = () => {
 		const arrData = data
 			.split(" ")
 			.filter((item) => item !== "")
-			.map((item, i) => {
+			.map((item, i, arr) => {
 				if (i === 0) {
 					return item.toUpperCase();
 				}
 				if (
-					i === data.split(" ").length - 1 ||
-					i === data.split(" ").length - 2
+					i === arr.length - 1 ||
+					i === arr.length - 2
 				) {
 					return item.toLowerCase();
 				}
@@ -43,7 +43,7 @@ export const makeInput = () => {
 		let count = 0;
 		let data = inputField.value;
 		for (let i = 0; i < data.length; i++) {
-			if (data[i] === "a") {
+			if (data[i] === "a" || data[i] === "A") {
 				count++;
 			}
 		}
@@ -54,13 +54,11 @@ export const makeInput = () => {
 		alert(`Number of 'a' is ${countA()}`);
 	});
 
-	const pingUser = debounce(() => {
-		setTimeout(() => {
-			if (!confirm("Are you still here?")) {
-				window.close();
-			}
-		}, 300000);
-	});
+	const pingUser = setTimeout(() => {
+		if (!confirm("Are you still here?")) {
+			window.close();
+		}
+	}, 300000);
 
 	const processChange = debounce(() => {
 		postResult();

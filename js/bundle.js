@@ -24,7 +24,7 @@ function getDifference(arr) {
 	}
 
 	if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkIfArray)(arr) || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkAllItemsTypes)(arr, "number")) {
-		console.error(`Not all the values have a valid type`);
+		console.error("Not all the values have a valid type");
 		return;
 	}
 
@@ -35,19 +35,17 @@ function getDifference(arr) {
 //Lodash
 
 function getDifferenceLodash(arr) {
-	if (arr.length <= 1) {
+	if (_.size(arr) <= 1) {
 		return 0;
 	}
 
 	if (!_.isArray(arr) || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkAllItemsTypes)(arr, "number")) {
-		console.error(`Not all the values have a valid type`);
+		console.error("Not all the values have a valid type");
 		return;
 	}
 
 	return _.max(arr) - _.min(arr);
 }
-
-
 
 
 /***/ }),
@@ -70,13 +68,14 @@ __webpack_require__.r(__webpack_exports__);
 
 function getFileName(url) {
 	if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(url, "string")) {
-		console.error(`Not all the values have a valid type`);
+		console.error("Not all the values have a valid type");
 		return;
 	}
 
 	let fileName = url.split("\\");
 	return fileName[fileName.length - 1].split(".")[0];
 }
+
 
 /***/ }),
 
@@ -98,28 +97,28 @@ __webpack_require__.r(__webpack_exports__);
 // Native JS
 
 function checkStrings(str1, str2) {
-    if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str1, "string") || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str2, "string")) {
-        console.error(`Not all the values have a valid type`);
-        return;
-    }
-    
-    return str1.length === str2.length && str2.repeat(2).includes(str1);
+	if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str1, "string") || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str2, "string")) {
+		console.error("Not all the values have a valid type");
+		return;
+	}
+
+	return str1.length === str2.length && str2.repeat(2).includes(str1);
 }
 
 // Task 11
 // Lodash
 
 function checkStringsLodash(str1, str2) {
-    if (!_.isString(str1) || !_.isString(str2)) {
-        console.error(`Not all the values have a valid type`);
-        return;
-    }
+	if (!_.isString(str1) || !_.isString(str2)) {
+		console.error("Not all the values have a valid type");
+		return;
+	}
 
-    if (_.size(str1) !== _.size(str2)) {
-        return false;
-      }
-      
-    return _.includes((str1 + str1), str2);
+	if (_.size(str1) !== _.size(str2)) {
+		return false;
+	}
+
+	return _.includes(str1 + str1, str2);
 }
 
 
@@ -143,21 +142,18 @@ __webpack_require__.r(__webpack_exports__);
 // Native JS
 
 function composeArrays(a) {
-    if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkIfArray)(a) || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkAllItemsTypes)(a, "number")) {
-        console.error(`Not all the values have a valid type`);
-        return;
-    }
+	if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkIfArray)(a) || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkAllItemsTypes)(a, "number")) {
+		console.error("Not all the values have a valid type");
+		return;
+	}
 
 	const sortedArr = a.sort((a, b) => a - b);
-	const initialArrLength = a.length;
 	const b = [];
 	const c = [];
 
-	for (let i = 0; i < initialArrLength / 2; i++) {
-		b.push(sortedArr[0]);
-		c.push(sortedArr[1]);
-		sortedArr.splice(0, 2);
-		continue;
+	for (let i = 0; i < sortedArr.length; i += 2) {
+		b.push(sortedArr[i]);
+		c.push(sortedArr[i + 1]);
 	}
 
 	return `Array b: [${b}], array c: [${c}]`;
@@ -167,25 +163,23 @@ function composeArrays(a) {
 // Lodash
 
 function composeArraysLodash(a) {
-    if (!_.isArray(a) || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkAllItemsTypes)(a, "number")) {
-        console.error(`Not all the values have a valid type`);
-        return;
-    }
+	if (!_.isArray(a) || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkAllItemsTypes)(a, "number")) {
+		console.error("Not all the values have a valid type");
+		return;
+	}
 
-    const b = [];
-    const c = [];
+	const b = [];
+	const c = [];
 
-    const sortedArr = _.sortBy(a);
+	const sortedArr = _.sortBy(a);
 
-    for (let i = 0; i < _.size(sortedArr); i+= 2) {
-        b.push(sortedArr[i]);
+	for (let i = 0; i < _.size(sortedArr); i += 2) {
+		b.push(sortedArr[i]);
 		c.push(sortedArr[i + 1]);
-        _.slice(sortedArr, 0, 2);
-    }
-  
-    return `Array b: [${b}]; array c: [${c}]`;
-  }
-  
+	}
+
+	return `Array b: [${b}]; array c: [${c}]`;
+}
 
 
 /***/ }),
@@ -207,7 +201,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function composeNewString(str) {
     if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str, "string")) {
-        console.error(`Not all the values have a valid type`);
+        console.error("Not all the values have a valid type");
         return;
     }
 
@@ -244,66 +238,71 @@ function composeNewString(str) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "checkBracketsBalance": () => (/* binding */ checkBracketsBalance)
+/* harmony export */   "showTextOnPage": () => (/* binding */ showTextOnPage)
 /* harmony export */ });
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./js/modules/utils.js");
 
 // Task 14
 // Native JS
 
-const checkBracketsBalance = () => {
-	const textBlock = document.querySelector(".text-for-task14");
+const textBlock = document.querySelector(".text-for-task14");
 
-	const contentText =
-		"Lorem ipsum dolor sit amet (consectetur adipisicing elit). Exercitationem expedita recusandae,  (sapiente quasi?) Ipsa, atque nesciunt. (Cum dicta), placeat soluta adipisci iste assumenda tempore?";
+function checkForBrackets(str) {
+	if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str, "string")) {
+		console.error("Not all the values have a valid type");
+		return;
+	}
 
-	function checkForBrackets(str) {
-		if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str, "string")) {
-			console.error(`Not all the values have a valid type`);
-			return;
+	let stack = [];
+
+	for (let i = 0; i < str.length; i++) {
+		let char = str[i];
+
+		if (char == "(") {
+			stack.push(char);
 		}
 
-		const arr = str
-			.split("")
-			.filter((item) => item === "(" || item === ")");
-		let stack = [];
-
-		for (let i = 0; i < arr.length; i += 2) {
-			if (arr[i] === "(" && arr[i + 1] === ")") {
-				stack.push(true);
+		if (char === ")") {
+			if (stack.length > 0) {
+				stack.pop();
 			} else {
-				stack.push(false);
+				return false;
 			}
 		}
-
-		return stack.every((item) => item === true);
 	}
 
-	function showTextOnPage(str) {
-		if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str, "string")) {
-			console.error(`Not all the values have a valid type`);
-			return;
-		}
+	return stack.length == 0;
+}
 
-		if (checkForBrackets(str)) {
-			textBlock.textContent = str;
-		} else {
-			textBlock.textContent = "Error! Brackets are unbalanced.";
-			textBlock.style.color = "red";
-		}
+function showTextOnPage(str) {
+	if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str, "string")) {
+		console.error("Not all the values have a valid type");
+		return;
 	}
 
-	textBlock.addEventListener(
-		"copy",
-		(e) => {
-			alert("Copying is forbiden");
-			e.preventDefault();
-		},
-		false
-	);
+	if (checkForBrackets(str)) {
+		textBlock.textContent = str;
+	} else {
+		textBlock.textContent = "Error! Brackets are unbalanced.";
+		textBlock.style.color = "#914A55";
+	}
+}
 
-	showTextOnPage(contentText);
-};
+textBlock.addEventListener(
+	"copy",
+	(e) => {
+		alert("Copying is forbidden");
+		e.preventDefault();
+	}
+);
+
+textBlock.addEventListener(
+	"contextmenu",
+	(e) => {
+		e.preventDefault();
+	}
+);
+
 
 
 /***/ }),
@@ -316,12 +315,12 @@ const checkBracketsBalance = () => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "makeInput": () => (/* binding */ makeInput)
+/* harmony export */   "postInputOnPage": () => (/* binding */ postInputOnPage)
 /* harmony export */ });
 // Task 15
 // Native JS
 
-const makeInput = () => {
+const postInputOnPage = () => {
 	const inputField = document.querySelector("#phrase-input-field");
 	const list = document.querySelector("#list");
 
@@ -340,13 +339,13 @@ const makeInput = () => {
 		const arrData = data
 			.split(" ")
 			.filter((item) => item !== "")
-			.map((item, i) => {
+			.map((item, i, arr) => {
 				if (i === 0) {
 					return item.toUpperCase();
 				}
 				if (
-					i === data.split(" ").length - 1 ||
-					i === data.split(" ").length - 2
+					i === arr.length - 1 ||
+					i === arr.length - 2
 				) {
 					return item.toLowerCase();
 				}
@@ -363,7 +362,7 @@ const makeInput = () => {
 		let count = 0;
 		let data = inputField.value;
 		for (let i = 0; i < data.length; i++) {
-			if (data[i] === "a") {
+			if (data[i] === "a" || data[i] === "A") {
 				count++;
 			}
 		}
@@ -374,13 +373,11 @@ const makeInput = () => {
 		alert(`Number of 'a' is ${countA()}`);
 	});
 
-	const pingUser = debounce(() => {
-		setTimeout(() => {
-			if (!confirm("Are you still here?")) {
-				window.close();
-			}
-		}, 300000);
-	});
+	const pingUser = setTimeout(() => {
+		if (!confirm("Are you still here?")) {
+			window.close();
+		}
+	}, 300000);
 
 	const processChange = debounce(() => {
 		postResult();
@@ -488,42 +485,41 @@ __webpack_require__.r(__webpack_exports__);
 // Native JS
 
 function changeElelementsOrder(arr) {
-    if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkIfArray)(arr) || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkAllItemsTypes)(arr, "number")) {
-        console.error(`Not all the values have a valid type`);
-        return;
-    }
+	if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkIfArray)(arr) || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkAllItemsTypes)(arr, "number")) {
+		console.error("Not all the values have a valid type");
+		return;
+	}
 
-    const sortedArr = arr.sort((a, b) => a - b);
+	const sortedArr = arr.sort((a, b) => a - b);
 	const oddIndex = [];
-    const evenIndex = [];
+	const evenIndex = [];
 
-    sortedArr.forEach((item, i) => {
-        (i % 2) ? evenIndex.push(item) : oddIndex.push(item);
-    })
+	sortedArr.forEach((item, i) => {
+		i % 2 ? evenIndex.push(item) : oddIndex.push(item);
+	});
 
-    return oddIndex.concat(evenIndex.reverse());
+	return oddIndex.concat(evenIndex.reverse());
 }
 
 // Task 17
 // Lodash
 
 function changeElelementsOrderLodash(arr) {
-    if (!_.isArray(arr) || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkAllItemsTypes)(arr, "number")) {
-        console.error(`Not all the values have a valid type`);
-        return;
-    }
+	if (!_.isArray(arr) || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkAllItemsTypes)(arr, "number")) {
+		console.error("Not all the values have a valid type");
+		return;
+	}
 
-    const sortedArr = _.sortBy(arr);
+	const sortedArr = _.sortBy(arr);
 	const oddIndex = [];
-    const evenIndex = [];
+	const evenIndex = [];
 
-    _.forEach(sortedArr, function(item, i) {
-        (i % 2) ? evenIndex.push(item) : oddIndex.push(item);
-    })
+	_.forEach(sortedArr, function (item, i) {
+		i % 2 ? evenIndex.push(item) : oddIndex.push(item);
+	});
 
-    return _.concat(oddIndex, _.reverse(evenIndex));
+	return _.concat(oddIndex, _.reverse(evenIndex));
 }
-
 
 
 /***/ }),
@@ -546,27 +542,26 @@ __webpack_require__.r(__webpack_exports__);
 // Native JS
 
 function getArrayWithWords(str, num) {
-    if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str, "string") || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(num, "number")) {
-        console.error(`Not all the values have a valid type`);
-        return;
-    }
+	if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str, "string") || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(num, "number")) {
+		console.error("Not all the values have a valid type");
+		return;
+	}
 
-    return str.split(" ").filter(item => item.length > num);
+	return str.split(" ").filter((item) => item.length > num);
 }
 
 // Task #2
 // Lodash
 
 function getArrayWithWordsLodash(str, num) {
-    if (!_.isString(str) || !_.isNumber(num)) {
-        console.error(`Not all the values have a valid type`);
-        return;
-    }
-    
-    const arr = _.split(str, " ");
-    return _.filter(arr, (item) => item.length > num);
-}
+	if (!_.isString(str) || !_.isNumber(num)) {
+		console.error("Not all the values have a valid type");
+		return;
+	}
 
+	const arr = _.split(str, " ");
+	return _.filter(arr, (item) => item.length > num);
+}
 
 
 /***/ }),
@@ -589,26 +584,25 @@ __webpack_require__.r(__webpack_exports__);
 // Native JS
 
 function checkForEnding(str, ending) {
-    if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str, "string") || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(ending, "string")) {
-        console.error(`Not all the values have a valid type`);
-        return;
-    }
+	if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str, "string") || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(ending, "string")) {
+		console.error("Not all the values have a valid type");
+		return;
+	}
 
-    return str.slice(-ending.length) === ending;
+	return str.slice(-ending.length) === ending;
 }
 
 // Task 3
 // Lodash
 
 function checkForEndingLodash(str, ending) {
-    if (!_.isString(str) || !_.isString(ending)) {
-        console.error(`Not all the values have a valid type`);
-        return;
-    }
+	if (!_.isString(str) || !_.isString(ending)) {
+		console.error("Not all the values have a valid type");
+		return;
+	}
 
-    return _.endsWith(str, ending);
+	return _.endsWith(str, ending);
 }
-
 
 
 /***/ }),
@@ -621,9 +615,9 @@ function checkForEndingLodash(str, ending) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getAverageForEach": () => (/* binding */ getAverageForEach),
-/* harmony export */   "getAverageLodash": () => (/* binding */ getAverageLodash),
-/* harmony export */   "getAverageReduce": () => (/* binding */ getAverageReduce)
+/* harmony export */   "getAdjacentPairAverageForEach": () => (/* binding */ getAdjacentPairAverageForEach),
+/* harmony export */   "getAdjacentPairAverageLodash": () => (/* binding */ getAdjacentPairAverageLodash),
+/* harmony export */   "getAdjacentPairAverageReduce": () => (/* binding */ getAdjacentPairAverageReduce)
 /* harmony export */ });
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./js/modules/utils.js");
 
@@ -632,9 +626,9 @@ __webpack_require__.r(__webpack_exports__);
 // Native JS
 
 // With reduce
-function getAverageReduce(arr) {
+function getAdjacentPairAverageReduce(arr) {
 	if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkIfArray)(arr) || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkAllItemsTypes)(arr, "number")) {
-		console.error(`Not all the values have a valid type`);
+		console.error("Not all the values have a valid type");
 		return;
 	}
 
@@ -648,9 +642,9 @@ function getAverageReduce(arr) {
 }
 
 // With forEach
-function getAverageForEach(arr) {
+function getAdjacentPairAverageForEach(arr) {
 	if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkIfArray)(arr) || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkAllItemsTypes)(arr, "number")) {
-		console.error(`Not all the values have a valid type`);
+		console.error("Not all the values have a valid type");
 		return;
 	}
 
@@ -668,9 +662,9 @@ function getAverageForEach(arr) {
 
 // Task 4
 // Lodash
-function getAverageLodash(arr) {
+function getAdjacentPairAverageLodash(arr) {
 	if (!_.isArray(arr) || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkAllItemsTypes)(arr, "number")) {
-		console.error(`Not all the values have a valid type`);
+		console.error("Not all the values have a valid type");
 		return;
 	}
 
@@ -704,10 +698,10 @@ __webpack_require__.r(__webpack_exports__);
 // Native JS
 
 function removeABC(str) {
-    if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str, "string")) {
-        console.error(`Not all the values have a valid type`);
-        return;
-    }
+	if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str, "string")) {
+		console.error("Not all the values have a valid type");
+		return;
+	}
 
 	const pattern = new RegExp(/[abcABC]/gi);
 
@@ -717,7 +711,6 @@ function removeABC(str) {
 
 	return str.replace(pattern, "");
 }
-
 
 
 /***/ }),
@@ -741,28 +734,29 @@ __webpack_require__.r(__webpack_exports__);
 
 // With ReqExp
 function countVowelsReqExp(str) {
-    if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str, "string")) {
-        console.error(`Not all the values have a valid type`);
-        return;
-    }
-    
+	if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str, "string")) {
+		console.error("Not all the values have a valid type");
+		return;
+	}
+
 	const matches = str.toLowerCase().match(/[aeiouy]/gi);
 	return matches ? matches.length : 0;
 }
 
 // With forEach
 function countVowels(str) {
-    if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str, "string")) {
-        console.error(`Not all the values have a valid type`);
-        return;
-    }
+	if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str, "string")) {
+		console.error("Not all the values have a valid type");
+		return;
+	}
 
-	const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
+	const vowels = ["a", "e", "i", "o", "u", "y"];
 	let count = 0;
-	str.toLowerCase().split('').forEach((item) => vowels.indexOf(item) !== -1 ? count += 1: 0);
+	str.toLowerCase()
+		.split("")
+		.forEach((item) => (vowels.indexOf(item) !== -1 ? (count += 1) : 0));
 	return count;
 }
-
 
 
 /***/ }),
@@ -785,11 +779,11 @@ __webpack_require__.r(__webpack_exports__);
 // Native JS
 
 function findUnique(arr1, arr2) {
-    if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkIfArray)(arr1) || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkIfArray)(arr2)) {
-		console.error(`Not all the values have a valid type`);
+	if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkIfArray)(arr1) || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkIfArray)(arr2)) {
+		console.error("Not all the values have a valid type");
 		return;
 	}
-    
+
 	return Array.from(new Set(arr1.concat(arr2))).sort((a, b) => a - b);
 }
 
@@ -797,11 +791,11 @@ function findUnique(arr1, arr2) {
 // Lodash
 
 function findUniqueLodash(arr1, arr2) {
-    if (!_.isArray(arr1) && !_.isArray(arr2)) {
-		console.error(`Not all the values have a valid type`);
+	if (!_.isArray(arr1) && !_.isArray(arr2)) {
+		console.error("Not all the values have a valid type");
 		return;
 	}
-    
+
 	return _.sortedUniq(_.sortBy([...arr1, ...arr2]));
 }
 
@@ -825,15 +819,15 @@ __webpack_require__.r(__webpack_exports__);
 // Native JS
 
 function changeKeysWithValues(obj) {
-    if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.isObject)(obj)) {
-        console.error(`It's not an object`);
-        return;
-    }
+	if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.isObject)(obj)) {
+		console.error("It's not an object");
+		return;
+	}
 
-    if ((0,_utils__WEBPACK_IMPORTED_MODULE_0__.isEmptyObject)(obj)) {
-        console.error(`Object does not contain any elements`);
-        return;
-    }
+	if ((0,_utils__WEBPACK_IMPORTED_MODULE_0__.isEmptyObject)(obj)) {
+		console.error("Object does not contain any elements");
+		return;
+	}
 
 	const changedObj = {};
 
@@ -843,6 +837,7 @@ function changeKeysWithValues(obj) {
 
 	return changedObj;
 }
+
 
 /***/ }),
 
@@ -862,29 +857,28 @@ __webpack_require__.r(__webpack_exports__);
 // Native JS
 
 function calculateInsuranceDifference(obj, limit) {
-    if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.isObject)(obj) || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(limit, "number")) {
-        console.error(`Not all the items have a valid type`);
-        return;
-    }
-    
-    if ((0,_utils__WEBPACK_IMPORTED_MODULE_0__.isEmptyObject)(obj)) {
-        console.error(`Object does not contain any elements`);
-        return;
-    }
+	if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.isObject)(obj) || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(limit, "number")) {
+		console.error("Not all the items have a valid type");
+		return;
+	}
+
+	if ((0,_utils__WEBPACK_IMPORTED_MODULE_0__.isEmptyObject)(obj)) {
+		console.error("Object does not contain any elements");
+		return;
+	}
 
 	let sum = 0;
-    for (let key in obj) {
-        sum += obj[key];
-    }
-    
-    if (sum < limit) {
-        console.log(`Sum of the elements are lower than an insurance value`);
-        return;
-    }
+	for (let key in obj) {
+		sum += obj[key];
+	}
 
-    return sum - limit;
+	if (sum < limit) {
+		console.log("Sum of the elements are lower than an insurance value");
+		return;
+	}
+
+	return sum - limit;
 }
-
 
 
 /***/ }),
@@ -897,29 +891,52 @@ function calculateInsuranceDifference(obj, limit) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "checkIfBrickFits": () => (/* binding */ checkIfBrickFits)
+/* harmony export */   "checkIfBrickFitsHole": () => (/* binding */ checkIfBrickFitsHole)
 /* harmony export */ });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./js/modules/utils.js");
+// // Task 9
+// // Native JS
 
+const checkIfBrickFitsHole = () => {
+	const brickInputHeigth = document.querySelector("#brick-input-heigth");
+	const brickInputWidth = document.querySelector("#brick-input-width");
+	const brickInputDepth = document.querySelector("#brick-input-depth");
+	const holeInputHeigth = document.querySelector("#hole-input-heigth");
+	const holeInputWidth = document.querySelector("#hole-input-width");
+	const resultField = document.querySelector("#brick-result-block");
+	const btn = document.querySelector("#brick-check-btn");
 
-// Task 9
-// Native JS
+	function checkIfBrickFits(a, b, c, w, h) {
+		a = brickInputHeigth.value;
+		b = brickInputWidth.value;
+		c = brickInputDepth.value;
+		w = holeInputHeigth.value;
+		h = holeInputWidth.value;
 
-function checkIfBrickFits(a, b, c, w, h) {
-	if (
-		!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(a, "number") 
-		|| !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(b, "number") 
-		|| !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(c, "number")
-        || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(w, "number")
-        || !(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(h, "number")
-	) {
-		console.error(`Not all the values have a valid type`);
-		return;
+		if (
+			(w >= a && h >= b) ||
+			(w >= a && h >= c) ||
+			(w >= b && h >= a) ||
+			(w >= b && h >= c) ||
+			(w >= c && h >= a) ||
+			(w >= c && h >= b) 
+		) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
-	return a <= w && c <= h ? true : false;
-}
+	btn.addEventListener("click", () => {
+		if (checkIfBrickFits()) {
+			resultField.textContent = "This brick fits!";
+			resultField.style.color = "#2E8EEE";
+		} else {
+			resultField.textContent = "This brick does not fit!";
+			resultField.style.color = "#914A55";
+		}
 
+	});
+};
 
 
 /***/ }),
@@ -947,7 +964,8 @@ function checkIfArray(arr) {
 
 //Checks datatypes of the elements in array
 function checkAllItemsTypes(arr, dataType) {
-	return arr.every((item) => typeof item === dataType);
+	return arr.every((item) => checkItemType(item, dataType));
+	// return arr.every((item) => typeof item === dataType);
 }
 
 // Checks if item is object
@@ -1111,16 +1129,16 @@ console.log((0,_modules_task3__WEBPACK_IMPORTED_MODULE_2__.checkForEndingLodash)
 
 // Task4 Native JS:
 // With reduce
-console.log((0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAverageReduce)([1, 3, 5, 1, -10]));
-console.log((0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAverageReduce)([2, -2, 2, -2, 2]));
+console.log((0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAdjacentPairAverageReduce)([1, 3, 5, 1, -10]));
+console.log((0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAdjacentPairAverageReduce)([2, -2, 2, -2, 2]));
 
 // With forEach
-console.log((0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAverageForEach)([1, 3, 5, 1, -10]));
-console.log((0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAverageForEach)([2, -2, 2, -2, 2]));
+console.log((0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAdjacentPairAverageForEach)([1, 3, 5, 1, -10]));
+console.log((0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAdjacentPairAverageForEach)([2, -2, 2, -2, 2]));
 
 // Task4 Lodash:
-console.log((0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAverageLodash)([1, 3, 5, 1, -10]));
-console.log((0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAverageLodash)([2, -2, 2, -2, 2]));
+console.log((0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAdjacentPairAverageLodash)([1, 3, 5, 1, -10]));
+console.log((0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAdjacentPairAverageLodash)([2, -2, 2, -2, 2]));
 
 // Task5 Native JS:
 // With ReqExp
@@ -1150,15 +1168,13 @@ console.log((0,_modules_task8__WEBPACK_IMPORTED_MODULE_8__.calculateInsuranceDif
 console.log((0,_modules_task8__WEBPACK_IMPORTED_MODULE_8__.calculateInsuranceDifference)({ skate: 200, painting: 200, shoes: 1 }, 400));
 
 // Task9 Native JS:
-console.log((0,_modules_task9__WEBPACK_IMPORTED_MODULE_9__.checkIfBrickFits)(1, 1, 1, 1, 1));
-console.log((0,_modules_task9__WEBPACK_IMPORTED_MODULE_9__.checkIfBrickFits)(1, 2, 1, 1, 1));
-console.log((0,_modules_task9__WEBPACK_IMPORTED_MODULE_9__.checkIfBrickFits)(1, 2, 2, 1, 1));
+(0,_modules_task9__WEBPACK_IMPORTED_MODULE_9__.checkIfBrickFitsHole)();
 
 // Task10 Native JS:
 console.log((0,_modules_task10__WEBPACK_IMPORTED_MODULE_10__.getFileName)('c:\\WebServers\\home\\testsite\\www\\myfile.txt'));
 
 // Task11 Native JS:
-console.log((0,_modules_task11__WEBPACK_IMPORTED_MODULE_11__.checkStrings)('irina', 'rinai'));
+console.log('Task11 native js', (0,_modules_task11__WEBPACK_IMPORTED_MODULE_11__.checkStrings)('irina', 'rinai'));
 console.log((0,_modules_task11__WEBPACK_IMPORTED_MODULE_11__.checkStrings)('irina', 'inair'));
 console.log((0,_modules_task11__WEBPACK_IMPORTED_MODULE_11__.checkStrings)('irina', 'inira'));
 
@@ -1184,10 +1200,13 @@ console.log((0,_modules_task13__WEBPACK_IMPORTED_MODULE_13__.composeNewString)('
 // console.log(composeNewString('quisquam 34578 like so: https://t.co/74 sdfsdfr@gmail.com bland SApiente dolore 123 maXime'))
 
 // Task14 Native JS:
-;(0,_modules_task14__WEBPACK_IMPORTED_MODULE_14__.checkBracketsBalance)();
+const contentText =
+"Lorem ipsum dolor sit amet ((consectetur adipisicing elit)). Exercitationem expedita recusandae,  (sapiente quasi?) Ipsa, atque nesciunt. (Cum dicta), placeat soluta adipisci iste assumenda tempore?";
+
+(0,_modules_task14__WEBPACK_IMPORTED_MODULE_14__.showTextOnPage)(contentText);
 
 // Task15 Native JS:
-(0,_modules_task15__WEBPACK_IMPORTED_MODULE_15__.makeInput)();
+(0,_modules_task15__WEBPACK_IMPORTED_MODULE_15__.postInputOnPage)();
 
 // Task16 Native JS:
 (0,_modules_task16__WEBPACK_IMPORTED_MODULE_16__.createPassword)();

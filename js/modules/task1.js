@@ -1,4 +1,4 @@
-import {checkIfArray, checkAllItemsTypes} from "./utils";
+import { checkIfArray, checkAllItemsTypes } from "./utils";
 // Task #1
 // Native JS
 
@@ -8,7 +8,7 @@ export function getDifference(arr) {
 	}
 
 	if (!checkIfArray(arr) || !checkAllItemsTypes(arr, "number")) {
-		console.error(`Not all the values have a valid type`);
+		console.error("Not all the values have a valid type");
 		return;
 	}
 
@@ -19,16 +19,14 @@ export function getDifference(arr) {
 //Lodash
 
 export function getDifferenceLodash(arr) {
-	if (arr.length <= 1) {
+	if (_.size(arr) <= 1) {
 		return 0;
 	}
 
 	if (!_.isArray(arr) || !checkAllItemsTypes(arr, "number")) {
-		console.error(`Not all the values have a valid type`);
+		console.error("Not all the values have a valid type");
 		return;
 	}
 
 	return _.max(arr) - _.min(arr);
 }
-
-
