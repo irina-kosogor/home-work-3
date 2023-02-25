@@ -361,21 +361,34 @@ const postInputOnPage = () => {
 		return count;
 	}
 
-	const alertCountA = debounce(() => {
+	const alertCountA = () => {
 		alert(`Number of 'a' is ${countA()}`);
-	});
-
-	const pingUser = setTimeout(() => {
-		if (!confirm("Are you still here?")) {
-			window.close();
-		}
-	}, 300000);
+		idleTime();
+	};
 
 	const processChange = debounce(() => {
 		postResult();
-		alertCountA();
-		pingUser();
+		debounce(alertCountA(), 500);
 	});
+
+	const idleTime = () => {
+		let time;
+
+		document.onmousemove = resetTimer;
+		document.onkeydown = resetTimer;
+		document.onscroll = resetTimer;
+
+		function logout() {
+			if (!confirm("Are you still here?")) {
+				window.close();
+			}
+		}
+	
+		function resetTimer() {
+			clearTimeout(time);
+			time = setTimeout(logout, 300000);
+		}
+	};
 
 	inputField.addEventListener("input", () => {
 		list.innerHTML = "";
