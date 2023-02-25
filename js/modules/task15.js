@@ -47,14 +47,14 @@ export const postInputOnPage = () => {
 		return count;
 	}
 
-	const alertCountA = () => {
+	const alertCountA = debounce(() => {
 		alert(`Number of 'a' is ${countA()}`);
 		idleTime();
-	};
+	}, 500);
 
 	const processChange = debounce(() => {
 		postResult();
-		debounce(alertCountA(), 500);
+		alertCountA();
 	});
 
 	const idleTime = () => {
@@ -64,15 +64,15 @@ export const postInputOnPage = () => {
 		document.onkeydown = resetTimer;
 		document.onscroll = resetTimer;
 
-		function logout() {
+		function closeTab() {
 			if (!confirm("Are you still here?")) {
-				window.close();
+				window.close();;
 			}
 		}
-	
+
 		function resetTimer() {
 			clearTimeout(time);
-			time = setTimeout(logout, 300000);
+			time = setTimeout(closeTab, 3000);
 		}
 	};
 

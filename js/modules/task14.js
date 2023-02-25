@@ -41,7 +41,8 @@ export function showTextOnPage(str) {
 		textBlock.textContent = str;
 	} else {
 		textBlock.textContent = "Error! Brackets are unbalanced.";
-		textBlock.style.color = "#914A55";
+		textBlock.style.color = "#fd0000";
+		textBlock.style.textAlign = "center";
 	}
 }
 

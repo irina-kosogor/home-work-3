@@ -49,11 +49,11 @@ export const checkIfBrickFitsHole = () => {
 				break;
 			case checkIfBrickFits() === "no fit":
 				resultField.textContent = "This brick does not fit";
-				resultField.style.color = "#914A55";
+				resultField.style.color = "#1c540f";
 				break;
 			case !checkIfBrickFits():
 				resultField.textContent = "Please fill in all required fields";
-				resultField.style.color = "#914A55";
+				resultField.style.color = "#fd0000";
 				break;
 		}
 	});
