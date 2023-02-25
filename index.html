@@ -17,19 +17,19 @@
 			<form class="brick-form" action="#">
 				<fieldset class="brick-dimenstions">
 					<legend>Brick dimensions</legend>
-					<input type="number" id="brick-input-heigth" required placeholder="Start typing here...">
+					<input type="number" min="1" id="brick-input-heigth" required placeholder="Start typing here...">
 					<label for="brick-input-brick-heigth">Brick height </label>
-					<input type="number" id="brick-input-width" required placeholder="Start typing here...">
+					<input type="number" min="1" id="brick-input-width" required placeholder="Start typing here...">
 					<label for="brick-input-brick-width">Brick width </label>
-					<input type="number" id="brick-input-depth" required placeholder="Start typing here...">
+					<input type="number" min="1" id="brick-input-depth" required placeholder="Start typing here...">
 					<label for="brick-input-brick-depth">Brick depth </label>
 				</fieldset>
 				<fieldset class="hole-dimensions">
 					<legend>Hole dimensions</legend>
-					<input type="number" id="hole-input-heigth" required placeholder="Start typing here...">
-					<label for="brick-input-hole-heigth">Hole height </label>
-					<input type="number" id="hole-input-width" required placeholder="Start typing here...">
+					<input type="number" min="1" id="hole-input-width" required placeholder="Start typing here...">
 					<label for="brick-input-hole-width">Hole width </label>
+					<input type="number" min="1" id="hole-input-heigth" required placeholder="Start typing here...">
+					<label for="brick-input-hole-heigth">Hole height </label>
 				</fieldset>
 				<h2>Your result goes here:</h2>
 				<div id="brick-result-block"></div>

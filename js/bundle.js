@@ -907,60 +907,67 @@ __webpack_require__.r(__webpack_exports__);
 // // Native JS
 
 const checkIfBrickFitsHole = () => {
-	const brickInputHeigth = document.querySelector("#brick-input-heigth");
-	const brickInputWidth = document.querySelector("#brick-input-width");
-	const brickInputDepth = document.querySelector("#brick-input-depth");
-	const holeInputHeigth = document.querySelector("#hole-input-heigth");
-	const holeInputWidth = document.querySelector("#hole-input-width");
+	const a = document.querySelector("#brick-input-heigth").value;
+	const b = document.querySelector("#brick-input-width").value;
+	const c = document.querySelector("#brick-input-depth").value;
+	const w = document.querySelector("#hole-input-width").value;
+	const h = document.querySelector("#hole-input-heigth").value;
 	const resultField = document.querySelector("#brick-result-block");
 	const btn = document.querySelector("#brick-check-btn");
 
-	function checkIfBrickFits(a, b, c, w, h) {
-		a = brickInputHeigth.value;
-		b = brickInputWidth.value;
-		c = brickInputDepth.value;
-		w = holeInputHeigth.value;
-		h = holeInputWidth.value;
-		
-		if (
-			(a == null || a == "") &&
-			(b == null || b == "") &&
-			(c == null || c == "") &&
-			(w == null || w == "") &&
-			(h == null || h == "")
-		) {
-			return false;
-		}
-
-		if (
-			(w >= a && h >= b) ||
-			(w >= a && h >= c) ||
-			(w >= b && h >= a) ||
-			(w >= b && h >= c) ||
-			(w >= c && h >= a) ||
-			(w >= c && h >= b) 
-		) {
-			return "fit";
-		} else {
-			return "no fit";
-		}
+	function checkIfEmpty(a) {
+		if (a ===undefined || a ===null || a ==='') {
+			console.log(a)
+			return true; 
+		} 
+		console.log(false)
+		return false;
 	}
 
+	// function checkIfNegative(a, b, c, w, h) {
+	// 	if (
+	// 		(a < 1 || b < 1 || c < 1 || w < 1 || h < 1)
+	// 	) {
+	// 		return true;
+	// 	}
+	// 	return false;
+	// }
+
+	// function checkIfBrickFits(a, b, c, w, h) {
+	// 	if (
+	// 		(w >= a && h >= b) ||
+	// 		(w >= a && h >= c) ||
+	// 		(w >= b && h >= a) ||
+	// 		(w >= b && h >= c) ||
+	// 		(w >= c && h >= a) ||
+	// 		(w >= c && h >= b)
+	// 	) {
+	// 		return true;
+	// 	} else {
+	// 		return false;
+	// 	}
+	// }
+
 	btn.addEventListener("click", () => {
-		switch (true) {
-			case checkIfBrickFits() === "fit":
-				resultField.textContent = "This brick fits!";
-				resultField.style.color = "#2E8EEE";
-				break;
-			case checkIfBrickFits() === "no fit":
-				resultField.textContent = "This brick does not fit";
-				resultField.style.color = "#1c540f";
-				break;
-			case !checkIfBrickFits():
-				resultField.textContent = "Please fill in all required fields";
-				resultField.style.color = "#fd0000";
-				break;
-		}
+		checkIfEmpty(a, b, c, w, h);
+		// switch (true) {
+		// 	case checkIfEmpty(a, b, c, w, h):
+		// 		resultField.textContent = "Please fill in all required fields";
+		// 		resultField.style.color = "#fd0000";
+		// 		break;
+		// 	case checkIfNegative(a, b, c, w, h):
+		// 		resultField.textContent = "Dimensions cannot be nagative";
+		// 		resultField.style.color = "#fd0000";
+		// 		break;
+		// 	case checkIfBrickFits(a, b, c, w, h):
+		// 		resultField.textContent = "This brick fits!";
+		// 		resultField.style.color = "#2E8EEE";
+		// 		break;
+		// 	case !checkIfBrickFits(a, b, c, w, h):
+		// 		resultField.textContent = "This brick does not fit";
+		// 		resultField.style.color = "#1c540f";
+		// 		break;
+		// }
 	});
 };
 

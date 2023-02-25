@@ -10,21 +10,21 @@ export const checkIfBrickFitsHole = () => {
 	const resultField = document.querySelector("#brick-result-block");
 	const btn = document.querySelector("#brick-check-btn");
 
-	function checkIfBrickFits(a, b, c, w, h) {
-		a = brickInputHeigth.value;
-		b = brickInputWidth.value;
-		c = brickInputDepth.value;
-		w = holeInputHeigth.value;
-		h = holeInputWidth.value;
+	function checkIfBrickFits() {
+		const a = brickInputHeigth.value;
+		const b = brickInputWidth.value;
+		const c = brickInputDepth.value;
+		const w = holeInputHeigth.value;
+		const h = holeInputWidth.value;
 		
 		if (
-			(a == null || a == "") &&
-			(b == null || b == "") &&
-			(c == null || c == "") &&
-			(w == null || w == "") &&
+			(a == null || a == "") ||
+			(b == null || b == "") ||
+			(c == null || c == "") ||
+			(w == null || w == "") ||
 			(h == null || h == "")
 		) {
-			return false;
+			return true;
 		}
 
 		if (
@@ -51,10 +51,10 @@ export const checkIfBrickFitsHole = () => {
 				resultField.textContent = "This brick does not fit";
 				resultField.style.color = "#1c540f";
 				break;
-			case !checkIfBrickFits():
-				resultField.textContent = "Please fill in all required fields";
-				resultField.style.color = "#fd0000";
-				break;
+			// case checkIfBrickFits():
+			// 	resultField.textContent = "Please fill in all required fields";
+			// 	resultField.style.color = "#fd0000";
+			// 	break;
 		}
 	});
 };
