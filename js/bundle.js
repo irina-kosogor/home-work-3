@@ -415,7 +415,6 @@ const createPassword = () => {
 
 		do {
 			generatedPass = generatePassword(passwordLength);
-			console.log(generatePassword);
 		} while (!checkPassValidity(generatedPass));
 		resultField.value = generatedPass;
 	});
@@ -908,6 +907,16 @@ const checkIfBrickFitsHole = () => {
 		c = brickInputDepth.value;
 		w = holeInputHeigth.value;
 		h = holeInputWidth.value;
+		
+		if (
+			(a == null || a == "") &&
+			(b == null || b == "") &&
+			(c == null || c == "") &&
+			(w == null || w == "") &&
+			(h == null || h == "")
+		) {
+			return false;
+		}
 
 		if (
 			(w >= a && h >= b) ||
@@ -917,21 +926,27 @@ const checkIfBrickFitsHole = () => {
 			(w >= c && h >= a) ||
 			(w >= c && h >= b) 
 		) {
-			return true;
+			return "fit";
 		} else {
-			return false;
+			return "no fit";
 		}
 	}
 
 	btn.addEventListener("click", () => {
-		if (checkIfBrickFits()) {
-			resultField.textContent = "This brick fits!";
-			resultField.style.color = "#2E8EEE";
-		} else {
-			resultField.textContent = "This brick does not fit!";
-			resultField.style.color = "#914A55";
+		switch (true) {
+			case checkIfBrickFits() === "fit":
+				resultField.textContent = "This brick fits!";
+				resultField.style.color = "#2E8EEE";
+				break;
+			case checkIfBrickFits() === "no fit":
+				resultField.textContent = "This brick does not fit";
+				resultField.style.color = "#914A55";
+				break;
+			case !checkIfBrickFits():
+				resultField.textContent = "Please fill in all required fields";
+				resultField.style.color = "#914A55";
+				break;
 		}
-
 	});
 };
 

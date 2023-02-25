@@ -17,7 +17,6 @@ export const createPassword = () => {
 
 		do {
 			generatedPass = generatePassword(passwordLength);
-			console.log(generatePassword);
 		} while (!checkPassValidity(generatedPass));
 		resultField.value = generatedPass;
 	});
