@@ -24,10 +24,7 @@ export const postInputOnPage = () => {
 				if (i === 0) {
 					return item.toUpperCase();
 				}
-				if (
-					i === arr.length - 1 ||
-					i === arr.length - 2
-				) {
+				if (i === arr.length - 1 || i === arr.length - 2) {
 					return item.toLowerCase();
 				}
 				return item;

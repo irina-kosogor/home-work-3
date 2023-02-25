@@ -8,8 +8,7 @@ export function checkStrings(str1, str2) {
 		console.error("Not all the values have a valid type");
 		return;
 	}
-
-	return str1.length === str2.length && str2.repeat(2).includes(str1);
+	return str1.length === str2.length && (str2 + str2).includes(str1);
 }
 
 // Task 11
@@ -25,5 +24,5 @@ export function checkStringsLodash(str1, str2) {
 		return false;
 	}
 
-	return _.includes(str1 + str1, str2);
+	return _.includes(str2 + str2, str1);
 }

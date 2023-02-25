@@ -5,8 +5,8 @@
  * e.g. Task 1 in file "task1.js" 
  * Current "main.js" file is used for Webpack as entry point and contains 
  * function calls and tests of the functionality
- * Feel free to comment/uncomment or add your own tests below.
- * Please don't make any changes in the module imports.
+ * Feel free to add your own tests below.
+ * Please don't make any changes in the module imports code.
  */
 
 import {getDifference, getDifferenceLodash} from './modules/task1';
@@ -29,116 +29,151 @@ import {createPassword} from './modules/task16';
 import {changeElelementsOrder, changeElelementsOrderLodash} from './modules/task17';
 
 
-// Task1 Native JS:
-console.log(getDifference([1, 2, 3, -4]));
-console.log(getDifference([16]));
+// Task1:
+console.groupCollapsed("Task 1");
+    // Native JS:
+    console.log("Native JS:", getDifference([1, 2, 3, -4]));
+    console.log("Native JS:", getDifference([16]));
+    // Lodash:
+    console.log("Lodash:", getDifferenceLodash([3, 6, 4, 43, -12]));
+    console.log("Lodash:", getDifferenceLodash([]));
+console.groupEnd();
 
-// Task1 Lodash:
-console.log(getDifferenceLodash([1, 2, 3, -4]));
-console.log(getDifferenceLodash([16]));
+// Task2 
+console.groupCollapsed("Task 2");
+    // Native JS:
+    console.log("Native JS:", getArrayWithWords('Lorem, ipsum dolor sit amet consectetu, ex minus sunt', 6))
+    // Lodash:
+    console.log("Lodash:", getArrayWithWordsLodash('Lorem, ipsum dolor sit amet consectetu adipisicin elit', 8));
+console.groupEnd();
 
-// Task2 Native JS:
-console.log(getArrayWithWords('Lorem, ipsum dolor sit amet consectetu, ex minus sunt', 6))
+// Task3 
+console.groupCollapsed("Task 3");
+    //Native JS:
+    console.log("Native JS:", checkForEnding('abc', 'bc'));
+    console.log("Native JS:", checkForEnding('abc', 'd'));
+    // Lodash:
+    console.log("Lodash:", checkForEndingLodash('abc', 'bc'));
+    console.log("Lodash:", checkForEndingLodash('abc', 'd'));
+console.groupEnd();
 
-// Task2 Lodash:
-console.log(getArrayWithWordsLodash('Lorem, ipsum dolor sit amet consectetu adipisicin elit', 8));
+// Task4 
+console.groupCollapsed("Task 4");
+    // Native JS with reduce
+    console.log("Native JS with reduce:", getAdjacentPairAverageReduce([1, 3, 5, 1, -10]));
+    console.log("Native JS with reduce::", getAdjacentPairAverageReduce([2, -2, 2, -2, 2]));
+    // Native JS withforEach
+    console.log("Native JS with forEach:", getAdjacentPairAverageForEach([1, 3, 5, 1, -10]));
+    console.log("Native JS with forEach:", getAdjacentPairAverageForEach([2, -2, 2, -2, 2]));
+    // Lodash:
+    console.log("Lodash:", getAdjacentPairAverageLodash([1, 3, 5, 1, -10]));
+    console.log("Lodash:", getAdjacentPairAverageLodash([2, -2, 2, -2, 2]));
+console.groupEnd();
 
-// Task3 Native JS:
-console.log(checkForEnding('abc', 'bc'));
-console.log(checkForEnding('abc', 'd'));
 
-// Task3 Lodash:
-console.log(checkForEndingLodash('abc', 'bc'));
-console.log(checkForEndingLodash('abc', 'd'));
+// Task5 
+console.groupCollapsed("Task 5");
+    // Native JS with ReqExp
+    console.log("Native JS with RegExp:", countVowelsReqExp("Celebration"));
+    console.log("Native JS with RegExp:", countVowelsReqExp("Palm"));
+    // Native JS with forEach
+    console.log("Native JS with forEach:", countVowels("Celebration"));
+    console.log("Native JS with forEach:", countVowels("Palm"));
+console.groupEnd();
 
-// Task4 Native JS:
-// With reduce
-console.log(getAdjacentPairAverageReduce([1, 3, 5, 1, -10]));
-console.log(getAdjacentPairAverageReduce([2, -2, 2, -2, 2]));
+// Task5-a
+console.groupCollapsed("Task 5-2");
+    // Native JS:
+    console.log("Native JS:", removeABC("This might be a bit hard"));
+    console.log("Native JS:", removeABC("hello world!"));
+console.groupEnd();
 
-// With forEach
-console.log(getAdjacentPairAverageForEach([1, 3, 5, 1, -10]));
-console.log(getAdjacentPairAverageForEach([2, -2, 2, -2, 2]));
+// Task6
+console.groupCollapsed("Task 6");
+    // Native JS:
+    console.log("Native JS:", findUnique([1, 2, 3], [100, 2, 1, 10]));
+    // Task6 Lodash:
+    console.log("Lodash:", findUniqueLodash([1, 2, 3], [100, 2, 1, 10]));
+console.groupEnd();
 
-// Task4 Lodash:
-console.log(getAdjacentPairAverageLodash([1, 3, 5, 1, -10]));
-console.log(getAdjacentPairAverageLodash([2, -2, 2, -2, 2]));
+// Task7 
+console.groupCollapsed("Task 7");
+    //Native JS:
+    console.log("Native JS:", changeKeysWithValues({red: "#FF0000", green: "#00FF00", white: "#FFFFFF"}));
+console.groupEnd();
 
-// Task5 Native JS:
-// With ReqExp
-console.log(countVowelsReqExp("Celebration"));
-console.log(countVowelsReqExp("Palm"));
+// Task8 
+console.groupCollapsed("Task 8");
+    // Native JS:
+    console.log("Native JS:", calculateInsuranceDifference({"baseball bat": 20}, 5));
+    console.log("Native JS:", calculateInsuranceDifference({ skate: 10, painting: 20 }, 19));
+    console.log("Native JS:", calculateInsuranceDifference({ skate: 200, painting: 200, shoes: 1 }, 400));
+console.groupEnd();
 
-// With forEach
-console.log(countVowels("Celebration"));
-console.log(countVowels("Palm"));
-
-// Task5-a Native JS:
-console.log(removeABC("This might be a bit hard"));
-console.log(removeABC("hello world!"));
-
-// Task6 Native JS:
-console.log(findUnique([1, 2, 3], [100, 2, 1, 10]));
-
-// Task6 Lodash:
-console.log(findUniqueLodash([1, 2, 3], [100, 2, 1, 10]));
-
-// Task7 Native JS:
-console.log(changeKeysWithValues({red: "#FF0000", green: "#00FF00", white: "#FFFFFF"}));
-
-// Task8 Native JS:
-console.log(calculateInsuranceDifference({"baseball bat": 20}, 5));
-console.log(calculateInsuranceDifference({ skate: 10, painting: 20 }, 19));
-console.log(calculateInsuranceDifference({ skate: 200, painting: 200, shoes: 1 }, 400));
-
-// Task9 Native JS:
+// Task9 
+console.log("Task 9 --> implemented on the page");
+// Native JS:
 checkIfBrickFitsHole();
 
-// Task10 Native JS:
-console.log(getFileName('c:\\WebServers\\home\\testsite\\www\\myfile.txt'));
+// Task10 
+console.groupCollapsed("Task 10");
+    // Native JS:
+    console.log("Native JS:", getFileName('c:\\WebServers\\home\\testsite\\www\\myfile.txt'));
+console.groupEnd();
 
-// Task11 Native JS:
-console.log('Task11 native js', checkStrings('irina', 'rinai'));
-console.log(checkStrings('irina', 'inair'));
-console.log(checkStrings('irina', 'inira'));
+// Task11 
+console.groupCollapsed("Task 11");
+    //Native JS:
+    console.log("Native JS:", checkStrings('irina', 'rinai'));
+    console.log("Native JS:", checkStrings('irina', 'inira'));
+    // Lodash:
+    console.log("Lodash:", checkStringsLodash('irina', 'rinai'));
+    console.log("Lodash:", checkStringsLodash('irina', 'inira'));
+console.groupEnd();
 
-// Task11 Lodash:
-console.log(checkStringsLodash('irina', 'rinai'));
-console.log(checkStringsLodash('irina', 'inair'));
-console.log(checkStringsLodash('irina', 'inira'));
+// Task12 
+console.groupCollapsed("Task 12");
+    // Native JS:
+    console.log("Native JS:", composeArrays([2, 9, 6, 8, 5, 3]));
+    console.log("Native JS:", composeArrays([-1950, 1960, -1970, 1980, -1990, 2000, -2010, 1988]));
+    // Lodash:
+    console.log("Lodash:", composeArraysLodash([2, 9, 6, 8, 5, 3])); 
+    console.log("Lodash:", composeArraysLodash([-1950, 1960, -1970, 1980, -1990, 2000, -2010, 1988]));
+console.groupEnd();
 
-// Task12 Native JS:
-console.log(composeArrays([2, 9, 6, 8, 5, 3]));
-console.log(composeArrays([1950, 1960, 1970, 1980, 1990, 2000, 2010, 1988]));
-console.log(composeArrays([-1950, -1960, -1970, -1980]));
+// Task13 
+console.groupCollapsed("Task 13");
+    // Native JS:
+    const stringInitial = "quisquam 34578 like so: https://t.co/74DfkMG5FB dolLOibus sdfsdfr@gmail.com blanditiis SApiente dolore 123 maXime"
+    console.log("Native JS:", composeNewString(stringInitial));
+    /** Test case for having new string longer than initial one
+     * it is commented not to have alert popping up every 5 seconds*/ 
+    // console.log(composeNewString('quisquam 34578 like so: https://t.co/74 sdfsdfr@gmail.com bland SApiente dolore 123 maXime'))
+console.groupEnd();
 
-// Task12 Lodash:
-console.log(composeArraysLodash([2, 9, 6, 8, 5, 3])); 
-console.log(composeArraysLodash([1950, 1960, 1970, 1980, 1990, 2000, 2010, 1988]));
-console.log(composeArraysLodash([-1950, -1960, -1970, -1980]));
-
-// Task13 Native JS:
-console.log(composeNewString('quisquam 34578 like so: https://t.co/74DfkMG5FB dolLOibus sdfsdfr@gmail.com blanditiis SApiente dolore 123 maXime'))
-/** Test case for having new string longer than initial one
- * it is commented not to have alert popping up every 5 seconds*/ 
-// console.log(composeNewString('quisquam 34578 like so: https://t.co/74 sdfsdfr@gmail.com bland SApiente dolore 123 maXime'))
-
-// Task14 Native JS:
+// Task14 
+console.log("Task 14 --> implemented on the page");
+// Native JS:
 const contentText =
 "Lorem ipsum dolor sit amet ((consectetur adipisicing elit)). Exercitationem expedita recusandae,  (sapiente quasi?) Ipsa, atque nesciunt. (Cum dicta), placeat soluta adipisci iste assumenda tempore?";
-
 showTextOnPage(contentText);
 
-// Task15 Native JS:
+// Task15 
+console.log("Task 15 --> implemented on the page");
+//Native JS:
 postInputOnPage();
 
-// Task16 Native JS:
+// Task16 
+console.log("Task 16 --> implemented on the page");
+//Native JS:
 createPassword();
 
-// Task17 Native JS:
-console.log(changeElelementsOrder([1,2,3,4,5]));
-console.log(changeElelementsOrder([1, 5, 9, 12, 54, 3, 9, 45, 10, 15, 2]));
-
-// Task17 Lodash:
-console.log(changeElelementsOrderLodash([1,2,3,4,5]));
-console.log(changeElelementsOrderLodash([1, 5, 9, 12, 54, 3, 9, 45, 10, 15, 2]));
+// Task17 
+console.groupCollapsed("Task 17");
+    // Native JS:
+    console.log("Native JS:", changeElelementsOrder([1,2,3,4,5]));
+    console.log("Native JS:", changeElelementsOrder([1, 5, 9, 12, 54, 3, 9, 45, 10, 15, 2]));
+    // Lodash:
+    console.log("Lodash:", changeElelementsOrderLodash([1,2,3,4,5]));
+    console.log("Lodash:", changeElelementsOrderLodash([1, 5, 9, 12, 54, 3, 9, 45, 10, 15, 2]));
+console.groupEnd();

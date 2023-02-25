@@ -45,18 +45,11 @@ export function showTextOnPage(str) {
 	}
 }
 
-textBlock.addEventListener(
-	"copy",
-	(e) => {
-		alert("Copying is forbidden");
-		e.preventDefault();
-	}
-);
+textBlock.addEventListener("copy", (e) => {
+	alert("Copying is forbidden");
+	e.preventDefault();
+});
 
-textBlock.addEventListener(
-	"contextmenu",
-	(e) => {
-		e.preventDefault();
-	}
-);
-
+textBlock.addEventListener("contextmenu", (e) => {
+	e.preventDefault();
+});

@@ -101,8 +101,7 @@ function checkStrings(str1, str2) {
 		console.error("Not all the values have a valid type");
 		return;
 	}
-
-	return str1.length === str2.length && str2.repeat(2).includes(str1);
+	return str1.length === str2.length && (str2 + str2).includes(str1);
 }
 
 // Task 11
@@ -118,7 +117,7 @@ function checkStringsLodash(str1, str2) {
 		return false;
 	}
 
-	return _.includes(str1 + str1, str2);
+	return _.includes(str2 + str2, str1);
 }
 
 
@@ -200,10 +199,10 @@ __webpack_require__.r(__webpack_exports__);
 // Native JS
 
 function composeNewString(str) {
-    if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str, "string")) {
-        console.error("Not all the values have a valid type");
-        return;
-    }
+	if (!(0,_utils__WEBPACK_IMPORTED_MODULE_0__.checkItemType)(str, "string")) {
+		console.error("Not all the values have a valid type");
+		return;
+	}
 
 	const patternForUrl =
 		/((http|https):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/gim;
@@ -211,21 +210,24 @@ function composeNewString(str) {
 		/(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
 	const patternForDigits = /\d{4,}/g;
 
-	const newStr = str[0].toUpperCase() + str.substring(1).toLowerCase()
+	const newStr =
+		str[0].toUpperCase() +
+		str
+			.substring(1)
+			.toLowerCase()
 			.replace(patternForUrl, "[посилання заборонено]")
 			.replace(patternForEmail, "[контакти заборонені]")
-            .replace(patternForDigits, "");
+			.replace(patternForDigits, "");
 
-    if (str.length < newStr.length) {
-        let timerId = setTimeout(function askIfHelpNeeded() {
-            alert("Чи потрібна Вам допомога?");
-            timerId = setTimeout(askIfHelpNeeded, 5000)
-        }, 5000);      
-    }
+	if (str.length < newStr.length) {
+		let timerId = setTimeout(function askIfHelpNeeded() {
+			alert("Чи потрібна Вам допомога?");
+			timerId = setTimeout(askIfHelpNeeded, 5000);
+		}, 5000);
+	}
 
-    return newStr;
+	return newStr;
 }
-
 
 
 /***/ }),
@@ -288,21 +290,14 @@ function showTextOnPage(str) {
 	}
 }
 
-textBlock.addEventListener(
-	"copy",
-	(e) => {
-		alert("Copying is forbidden");
-		e.preventDefault();
-	}
-);
+textBlock.addEventListener("copy", (e) => {
+	alert("Copying is forbidden");
+	e.preventDefault();
+});
 
-textBlock.addEventListener(
-	"contextmenu",
-	(e) => {
-		e.preventDefault();
-	}
-);
-
+textBlock.addEventListener("contextmenu", (e) => {
+	e.preventDefault();
+});
 
 
 /***/ }),
@@ -343,10 +338,7 @@ const postInputOnPage = () => {
 				if (i === 0) {
 					return item.toUpperCase();
 				}
-				if (
-					i === arr.length - 1 ||
-					i === arr.length - 2
-				) {
+				if (i === arr.length - 1 || i === arr.length - 2) {
 					return item.toLowerCase();
 				}
 				return item;
@@ -1081,8 +1073,8 @@ __webpack_require__.r(__webpack_exports__);
  * e.g. Task 1 in file "task1.js" 
  * Current "main.js" file is used for Webpack as entry point and contains 
  * function calls and tests of the functionality
- * Feel free to comment/uncomment or add your own tests below.
- * Please don't make any changes in the module imports.
+ * Feel free to add your own tests below.
+ * Please don't make any changes in the module imports code.
  */
 
 
@@ -1105,119 +1097,154 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// Task1 Native JS:
-console.log((0,_modules_task1__WEBPACK_IMPORTED_MODULE_0__.getDifference)([1, 2, 3, -4]));
-console.log((0,_modules_task1__WEBPACK_IMPORTED_MODULE_0__.getDifference)([16]));
+// Task1:
+console.groupCollapsed("Task 1");
+    // Native JS:
+    console.log("Native JS:", (0,_modules_task1__WEBPACK_IMPORTED_MODULE_0__.getDifference)([1, 2, 3, -4]));
+    console.log("Native JS:", (0,_modules_task1__WEBPACK_IMPORTED_MODULE_0__.getDifference)([16]));
+    // Lodash:
+    console.log("Lodash:", (0,_modules_task1__WEBPACK_IMPORTED_MODULE_0__.getDifferenceLodash)([3, 6, 4, 43, -12]));
+    console.log("Lodash:", (0,_modules_task1__WEBPACK_IMPORTED_MODULE_0__.getDifferenceLodash)([]));
+console.groupEnd();
 
-// Task1 Lodash:
-console.log((0,_modules_task1__WEBPACK_IMPORTED_MODULE_0__.getDifferenceLodash)([1, 2, 3, -4]));
-console.log((0,_modules_task1__WEBPACK_IMPORTED_MODULE_0__.getDifferenceLodash)([16]));
+// Task2 
+console.groupCollapsed("Task 2");
+    // Native JS:
+    console.log("Native JS:", (0,_modules_task2__WEBPACK_IMPORTED_MODULE_1__.getArrayWithWords)('Lorem, ipsum dolor sit amet consectetu, ex minus sunt', 6))
+    // Lodash:
+    console.log("Lodash:", (0,_modules_task2__WEBPACK_IMPORTED_MODULE_1__.getArrayWithWordsLodash)('Lorem, ipsum dolor sit amet consectetu adipisicin elit', 8));
+console.groupEnd();
 
-// Task2 Native JS:
-console.log((0,_modules_task2__WEBPACK_IMPORTED_MODULE_1__.getArrayWithWords)('Lorem, ipsum dolor sit amet consectetu, ex minus sunt', 6))
+// Task3 
+console.groupCollapsed("Task 3");
+    //Native JS:
+    console.log("Native JS:", (0,_modules_task3__WEBPACK_IMPORTED_MODULE_2__.checkForEnding)('abc', 'bc'));
+    console.log("Native JS:", (0,_modules_task3__WEBPACK_IMPORTED_MODULE_2__.checkForEnding)('abc', 'd'));
+    // Lodash:
+    console.log("Lodash:", (0,_modules_task3__WEBPACK_IMPORTED_MODULE_2__.checkForEndingLodash)('abc', 'bc'));
+    console.log("Lodash:", (0,_modules_task3__WEBPACK_IMPORTED_MODULE_2__.checkForEndingLodash)('abc', 'd'));
+console.groupEnd();
 
-// Task2 Lodash:
-console.log((0,_modules_task2__WEBPACK_IMPORTED_MODULE_1__.getArrayWithWordsLodash)('Lorem, ipsum dolor sit amet consectetu adipisicin elit', 8));
+// Task4 
+console.groupCollapsed("Task 4");
+    // Native JS with reduce
+    console.log("Native JS with reduce:", (0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAdjacentPairAverageReduce)([1, 3, 5, 1, -10]));
+    console.log("Native JS with reduce::", (0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAdjacentPairAverageReduce)([2, -2, 2, -2, 2]));
+    // Native JS withforEach
+    console.log("Native JS with forEach:", (0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAdjacentPairAverageForEach)([1, 3, 5, 1, -10]));
+    console.log("Native JS with forEach:", (0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAdjacentPairAverageForEach)([2, -2, 2, -2, 2]));
+    // Lodash:
+    console.log("Lodash:", (0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAdjacentPairAverageLodash)([1, 3, 5, 1, -10]));
+    console.log("Lodash:", (0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAdjacentPairAverageLodash)([2, -2, 2, -2, 2]));
+console.groupEnd();
 
-// Task3 Native JS:
-console.log((0,_modules_task3__WEBPACK_IMPORTED_MODULE_2__.checkForEnding)('abc', 'bc'));
-console.log((0,_modules_task3__WEBPACK_IMPORTED_MODULE_2__.checkForEnding)('abc', 'd'));
 
-// Task3 Lodash:
-console.log((0,_modules_task3__WEBPACK_IMPORTED_MODULE_2__.checkForEndingLodash)('abc', 'bc'));
-console.log((0,_modules_task3__WEBPACK_IMPORTED_MODULE_2__.checkForEndingLodash)('abc', 'd'));
+// Task5 
+console.groupCollapsed("Task 5");
+    // Native JS with ReqExp
+    console.log("Native JS with RegExp:", (0,_modules_task5__WEBPACK_IMPORTED_MODULE_4__.countVowelsReqExp)("Celebration"));
+    console.log("Native JS with RegExp:", (0,_modules_task5__WEBPACK_IMPORTED_MODULE_4__.countVowelsReqExp)("Palm"));
+    // Native JS with forEach
+    console.log("Native JS with forEach:", (0,_modules_task5__WEBPACK_IMPORTED_MODULE_4__.countVowels)("Celebration"));
+    console.log("Native JS with forEach:", (0,_modules_task5__WEBPACK_IMPORTED_MODULE_4__.countVowels)("Palm"));
+console.groupEnd();
 
-// Task4 Native JS:
-// With reduce
-console.log((0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAdjacentPairAverageReduce)([1, 3, 5, 1, -10]));
-console.log((0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAdjacentPairAverageReduce)([2, -2, 2, -2, 2]));
+// Task5-a
+console.groupCollapsed("Task 5-2");
+    // Native JS:
+    console.log("Native JS:", (0,_modules_task5_2__WEBPACK_IMPORTED_MODULE_5__.removeABC)("This might be a bit hard"));
+    console.log("Native JS:", (0,_modules_task5_2__WEBPACK_IMPORTED_MODULE_5__.removeABC)("hello world!"));
+console.groupEnd();
 
-// With forEach
-console.log((0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAdjacentPairAverageForEach)([1, 3, 5, 1, -10]));
-console.log((0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAdjacentPairAverageForEach)([2, -2, 2, -2, 2]));
+// Task6
+console.groupCollapsed("Task 6");
+    // Native JS:
+    console.log("Native JS:", (0,_modules_task6__WEBPACK_IMPORTED_MODULE_6__.findUnique)([1, 2, 3], [100, 2, 1, 10]));
+    // Task6 Lodash:
+    console.log("Lodash:", (0,_modules_task6__WEBPACK_IMPORTED_MODULE_6__.findUniqueLodash)([1, 2, 3], [100, 2, 1, 10]));
+console.groupEnd();
 
-// Task4 Lodash:
-console.log((0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAdjacentPairAverageLodash)([1, 3, 5, 1, -10]));
-console.log((0,_modules_task4__WEBPACK_IMPORTED_MODULE_3__.getAdjacentPairAverageLodash)([2, -2, 2, -2, 2]));
+// Task7 
+console.groupCollapsed("Task 7");
+    //Native JS:
+    console.log("Native JS:", (0,_modules_task7__WEBPACK_IMPORTED_MODULE_7__.changeKeysWithValues)({red: "#FF0000", green: "#00FF00", white: "#FFFFFF"}));
+console.groupEnd();
 
-// Task5 Native JS:
-// With ReqExp
-console.log((0,_modules_task5__WEBPACK_IMPORTED_MODULE_4__.countVowelsReqExp)("Celebration"));
-console.log((0,_modules_task5__WEBPACK_IMPORTED_MODULE_4__.countVowelsReqExp)("Palm"));
+// Task8 
+console.groupCollapsed("Task 8");
+    // Native JS:
+    console.log("Native JS:", (0,_modules_task8__WEBPACK_IMPORTED_MODULE_8__.calculateInsuranceDifference)({"baseball bat": 20}, 5));
+    console.log("Native JS:", (0,_modules_task8__WEBPACK_IMPORTED_MODULE_8__.calculateInsuranceDifference)({ skate: 10, painting: 20 }, 19));
+    console.log("Native JS:", (0,_modules_task8__WEBPACK_IMPORTED_MODULE_8__.calculateInsuranceDifference)({ skate: 200, painting: 200, shoes: 1 }, 400));
+console.groupEnd();
 
-// With forEach
-console.log((0,_modules_task5__WEBPACK_IMPORTED_MODULE_4__.countVowels)("Celebration"));
-console.log((0,_modules_task5__WEBPACK_IMPORTED_MODULE_4__.countVowels)("Palm"));
-
-// Task5-a Native JS:
-console.log((0,_modules_task5_2__WEBPACK_IMPORTED_MODULE_5__.removeABC)("This might be a bit hard"));
-console.log((0,_modules_task5_2__WEBPACK_IMPORTED_MODULE_5__.removeABC)("hello world!"));
-
-// Task6 Native JS:
-console.log((0,_modules_task6__WEBPACK_IMPORTED_MODULE_6__.findUnique)([1, 2, 3], [100, 2, 1, 10]));
-
-// Task6 Lodash:
-console.log((0,_modules_task6__WEBPACK_IMPORTED_MODULE_6__.findUniqueLodash)([1, 2, 3], [100, 2, 1, 10]));
-
-// Task7 Native JS:
-console.log((0,_modules_task7__WEBPACK_IMPORTED_MODULE_7__.changeKeysWithValues)({red: "#FF0000", green: "#00FF00", white: "#FFFFFF"}));
-
-// Task8 Native JS:
-console.log((0,_modules_task8__WEBPACK_IMPORTED_MODULE_8__.calculateInsuranceDifference)({"baseball bat": 20}, 5));
-console.log((0,_modules_task8__WEBPACK_IMPORTED_MODULE_8__.calculateInsuranceDifference)({ skate: 10, painting: 20 }, 19));
-console.log((0,_modules_task8__WEBPACK_IMPORTED_MODULE_8__.calculateInsuranceDifference)({ skate: 200, painting: 200, shoes: 1 }, 400));
-
-// Task9 Native JS:
+// Task9 
+console.log("Task 9 --> implemented on the page");
+// Native JS:
 (0,_modules_task9__WEBPACK_IMPORTED_MODULE_9__.checkIfBrickFitsHole)();
 
-// Task10 Native JS:
-console.log((0,_modules_task10__WEBPACK_IMPORTED_MODULE_10__.getFileName)('c:\\WebServers\\home\\testsite\\www\\myfile.txt'));
+// Task10 
+console.groupCollapsed("Task 10");
+    // Native JS:
+    console.log("Native JS:", (0,_modules_task10__WEBPACK_IMPORTED_MODULE_10__.getFileName)('c:\\WebServers\\home\\testsite\\www\\myfile.txt'));
+console.groupEnd();
 
-// Task11 Native JS:
-console.log('Task11 native js', (0,_modules_task11__WEBPACK_IMPORTED_MODULE_11__.checkStrings)('irina', 'rinai'));
-console.log((0,_modules_task11__WEBPACK_IMPORTED_MODULE_11__.checkStrings)('irina', 'inair'));
-console.log((0,_modules_task11__WEBPACK_IMPORTED_MODULE_11__.checkStrings)('irina', 'inira'));
+// Task11 
+console.groupCollapsed("Task 11");
+    //Native JS:
+    console.log("Native JS:", (0,_modules_task11__WEBPACK_IMPORTED_MODULE_11__.checkStrings)('irina', 'rinai'));
+    console.log("Native JS:", (0,_modules_task11__WEBPACK_IMPORTED_MODULE_11__.checkStrings)('irina', 'inira'));
+    // Lodash:
+    console.log("Lodash:", (0,_modules_task11__WEBPACK_IMPORTED_MODULE_11__.checkStringsLodash)('irina', 'rinai'));
+    console.log("Lodash:", (0,_modules_task11__WEBPACK_IMPORTED_MODULE_11__.checkStringsLodash)('irina', 'inira'));
+console.groupEnd();
 
-// Task11 Lodash:
-console.log((0,_modules_task11__WEBPACK_IMPORTED_MODULE_11__.checkStringsLodash)('irina', 'rinai'));
-console.log((0,_modules_task11__WEBPACK_IMPORTED_MODULE_11__.checkStringsLodash)('irina', 'inair'));
-console.log((0,_modules_task11__WEBPACK_IMPORTED_MODULE_11__.checkStringsLodash)('irina', 'inira'));
+// Task12 
+console.groupCollapsed("Task 12");
+    // Native JS:
+    console.log("Native JS:", (0,_modules_task12__WEBPACK_IMPORTED_MODULE_12__.composeArrays)([2, 9, 6, 8, 5, 3]));
+    console.log("Native JS:", (0,_modules_task12__WEBPACK_IMPORTED_MODULE_12__.composeArrays)([-1950, 1960, -1970, 1980, -1990, 2000, -2010, 1988]));
+    // Lodash:
+    console.log("Lodash:", (0,_modules_task12__WEBPACK_IMPORTED_MODULE_12__.composeArraysLodash)([2, 9, 6, 8, 5, 3])); 
+    console.log("Lodash:", (0,_modules_task12__WEBPACK_IMPORTED_MODULE_12__.composeArraysLodash)([-1950, 1960, -1970, 1980, -1990, 2000, -2010, 1988]));
+console.groupEnd();
 
-// Task12 Native JS:
-console.log((0,_modules_task12__WEBPACK_IMPORTED_MODULE_12__.composeArrays)([2, 9, 6, 8, 5, 3]));
-console.log((0,_modules_task12__WEBPACK_IMPORTED_MODULE_12__.composeArrays)([1950, 1960, 1970, 1980, 1990, 2000, 2010, 1988]));
-console.log((0,_modules_task12__WEBPACK_IMPORTED_MODULE_12__.composeArrays)([-1950, -1960, -1970, -1980]));
+// Task13 
+console.groupCollapsed("Task 13");
+    // Native JS:
+    const stringInitial = "quisquam 34578 like so: https://t.co/74DfkMG5FB dolLOibus sdfsdfr@gmail.com blanditiis SApiente dolore 123 maXime"
+    console.log("Native JS:", (0,_modules_task13__WEBPACK_IMPORTED_MODULE_13__.composeNewString)(stringInitial));
+    /** Test case for having new string longer than initial one
+     * it is commented not to have alert popping up every 5 seconds*/ 
+    // console.log(composeNewString('quisquam 34578 like so: https://t.co/74 sdfsdfr@gmail.com bland SApiente dolore 123 maXime'))
+console.groupEnd();
 
-// Task12 Lodash:
-console.log((0,_modules_task12__WEBPACK_IMPORTED_MODULE_12__.composeArraysLodash)([2, 9, 6, 8, 5, 3])); 
-console.log((0,_modules_task12__WEBPACK_IMPORTED_MODULE_12__.composeArraysLodash)([1950, 1960, 1970, 1980, 1990, 2000, 2010, 1988]));
-console.log((0,_modules_task12__WEBPACK_IMPORTED_MODULE_12__.composeArraysLodash)([-1950, -1960, -1970, -1980]));
-
-// Task13 Native JS:
-console.log((0,_modules_task13__WEBPACK_IMPORTED_MODULE_13__.composeNewString)('quisquam 34578 like so: https://t.co/74DfkMG5FB dolLOibus sdfsdfr@gmail.com blanditiis SApiente dolore 123 maXime'))
-/** Test case for having new string longer than initial one
- * it is commented not to have alert popping up every 5 seconds*/ 
-// console.log(composeNewString('quisquam 34578 like so: https://t.co/74 sdfsdfr@gmail.com bland SApiente dolore 123 maXime'))
-
-// Task14 Native JS:
+// Task14 
+console.log("Task 14 --> implemented on the page");
+// Native JS:
 const contentText =
 "Lorem ipsum dolor sit amet ((consectetur adipisicing elit)). Exercitationem expedita recusandae,  (sapiente quasi?) Ipsa, atque nesciunt. (Cum dicta), placeat soluta adipisci iste assumenda tempore?";
-
 (0,_modules_task14__WEBPACK_IMPORTED_MODULE_14__.showTextOnPage)(contentText);
 
-// Task15 Native JS:
+// Task15 
+console.log("Task 15 --> implemented on the page");
+//Native JS:
 (0,_modules_task15__WEBPACK_IMPORTED_MODULE_15__.postInputOnPage)();
 
-// Task16 Native JS:
+// Task16 
+console.log("Task 16 --> implemented on the page");
+//Native JS:
 (0,_modules_task16__WEBPACK_IMPORTED_MODULE_16__.createPassword)();
 
-// Task17 Native JS:
-console.log((0,_modules_task17__WEBPACK_IMPORTED_MODULE_17__.changeElelementsOrder)([1,2,3,4,5]));
-console.log((0,_modules_task17__WEBPACK_IMPORTED_MODULE_17__.changeElelementsOrder)([1, 5, 9, 12, 54, 3, 9, 45, 10, 15, 2]));
-
-// Task17 Lodash:
-console.log((0,_modules_task17__WEBPACK_IMPORTED_MODULE_17__.changeElelementsOrderLodash)([1,2,3,4,5]));
-console.log((0,_modules_task17__WEBPACK_IMPORTED_MODULE_17__.changeElelementsOrderLodash)([1, 5, 9, 12, 54, 3, 9, 45, 10, 15, 2]));
+// Task17 
+console.groupCollapsed("Task 17");
+    // Native JS:
+    console.log("Native JS:", (0,_modules_task17__WEBPACK_IMPORTED_MODULE_17__.changeElelementsOrder)([1,2,3,4,5]));
+    console.log("Native JS:", (0,_modules_task17__WEBPACK_IMPORTED_MODULE_17__.changeElelementsOrder)([1, 5, 9, 12, 54, 3, 9, 45, 10, 15, 2]));
+    // Lodash:
+    console.log("Lodash:", (0,_modules_task17__WEBPACK_IMPORTED_MODULE_17__.changeElelementsOrderLodash)([1,2,3,4,5]));
+    console.log("Lodash:", (0,_modules_task17__WEBPACK_IMPORTED_MODULE_17__.changeElelementsOrderLodash)([1, 5, 9, 12, 54, 3, 9, 45, 10, 15, 2]));
+console.groupEnd();
 })();
 
 /******/ })()
