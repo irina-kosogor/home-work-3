@@ -915,59 +915,46 @@ const checkIfBrickFitsHole = () => {
 	const resultField = document.querySelector("#brick-result-block");
 	const btn = document.querySelector("#brick-check-btn");
 
-	function checkIfEmpty(a) {
-		if (a ===undefined || a ===null || a ==='') {
-			console.log(a)
-			return true; 
-		} 
-		console.log(false)
-		return false;
+	function checkIfBrickFits(a, b, c, w, h) {
+		if (
+			(a == null || a == "" || a < 1) ||
+			(b == null || b == "" || b < 1) ||
+			(c == null || c == "" || c < 1) ||
+			(w == null || w == "" || w < 1) ||
+			(h == null || h == "" || h < 1)
+		) {
+			return true;
+		}
+
+		if (
+			(w >= a && h >= b) ||
+			(w >= a && h >= c) ||
+			(w >= b && h >= a) ||
+			(w >= b && h >= c) ||
+			(w >= c && h >= a) ||
+			(w >= c && h >= b) 
+		) {
+			return "fit";
+		} else {
+			return "no fit";
+		}
 	}
 
-	// function checkIfNegative(a, b, c, w, h) {
-	// 	if (
-	// 		(a < 1 || b < 1 || c < 1 || w < 1 || h < 1)
-	// 	) {
-	// 		return true;
-	// 	}
-	// 	return false;
-	// }
-
-	// function checkIfBrickFits(a, b, c, w, h) {
-	// 	if (
-	// 		(w >= a && h >= b) ||
-	// 		(w >= a && h >= c) ||
-	// 		(w >= b && h >= a) ||
-	// 		(w >= b && h >= c) ||
-	// 		(w >= c && h >= a) ||
-	// 		(w >= c && h >= b)
-	// 	) {
-	// 		return true;
-	// 	} else {
-	// 		return false;
-	// 	}
-	// }
-
 	btn.addEventListener("click", () => {
-		checkIfEmpty(a, b, c, w, h);
-		// switch (true) {
-		// 	case checkIfEmpty(a, b, c, w, h):
-		// 		resultField.textContent = "Please fill in all required fields";
-		// 		resultField.style.color = "#fd0000";
-		// 		break;
-		// 	case checkIfNegative(a, b, c, w, h):
-		// 		resultField.textContent = "Dimensions cannot be nagative";
-		// 		resultField.style.color = "#fd0000";
-		// 		break;
-		// 	case checkIfBrickFits(a, b, c, w, h):
-		// 		resultField.textContent = "This brick fits!";
-		// 		resultField.style.color = "#2E8EEE";
-		// 		break;
-		// 	case !checkIfBrickFits(a, b, c, w, h):
-		// 		resultField.textContent = "This brick does not fit";
-		// 		resultField.style.color = "#1c540f";
-		// 		break;
-		// }
+		switch (true) {
+			case checkIfBrickFits(a, b, c, w, h):
+				resultField.textContent = "Missing or invalid data";
+				resultField.style.color = "#fd0000";
+				break;
+			case checkIfBrickFits(a, b, c, w, h) === "fit":
+				resultField.textContent = "This brick fits!";
+				resultField.style.color = "#2E8EEE";
+				break;
+			case checkIfBrickFits(a, b, c, w, h) === "no fit":
+				resultField.textContent = "This brick does not fit";
+				resultField.style.color = "#1c540f";
+				break;
+		}
 	});
 };
 
