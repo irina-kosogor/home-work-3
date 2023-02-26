@@ -2,23 +2,29 @@
 // // Native JS
 
 export const checkIfBrickFitsHole = () => {
-	const a = document.querySelector("#brick-input-heigth").value;
-	const b = document.querySelector("#brick-input-width").value;
-	const c = document.querySelector("#brick-input-depth").value;
-	const w = document.querySelector("#hole-input-width").value;
-	const h = document.querySelector("#hole-input-heigth").value;
+	const brickInputHeigth = document.querySelector("#brick-input-heigth");
+	const brickInputWidth = document.querySelector("#brick-input-width");
+	const brickInputDepth = document.querySelector("#brick-input-depth");
+	const holeInputHeigth = document.querySelector("#hole-input-heigth");
+	const holeInputWidth = document.querySelector("#hole-input-width");
 	const resultField = document.querySelector("#brick-result-block");
 	const btn = document.querySelector("#brick-check-btn");
 
-	function checkIfBrickFits(a, b, c, w, h) {
+	function checkIfBrickFits() {
+		const a = brickInputHeigth.value;
+		const b = brickInputWidth.value;
+		const c = brickInputDepth.value;
+		const w = holeInputHeigth.value;
+		const h = holeInputWidth.value;
+		
 		if (
-			(a == null || a == "" || a < 1) ||
-			(b == null || b == "" || b < 1) ||
-			(c == null || c == "" || c < 1) ||
-			(w == null || w == "" || w < 1) ||
-			(h == null || h == "" || h < 1)
+			(a == null || a == "") ||
+			(b == null || b == "") ||
+			(c == null || c == "") ||
+			(w == null || w == "") ||
+			(h == null || h == "")
 		) {
-			return true;
+			return "empty";
 		}
 
 		if (
@@ -29,25 +35,25 @@ export const checkIfBrickFitsHole = () => {
 			(w >= c && h >= a) ||
 			(w >= c && h >= b) 
 		) {
-			return "fit";
+			return true;
 		} else {
-			return "no fit";
+			return false;
 		}
 	}
 
 	btn.addEventListener("click", () => {
 		switch (true) {
-			case checkIfBrickFits(a, b, c, w, h):
-				resultField.textContent = "Missing or invalid data";
-				resultField.style.color = "#fd0000";
-				break;
-			case checkIfBrickFits(a, b, c, w, h) === "fit":
+			case checkIfBrickFits():
 				resultField.textContent = "This brick fits!";
 				resultField.style.color = "#2E8EEE";
 				break;
-			case checkIfBrickFits(a, b, c, w, h) === "no fit":
+			case !checkIfBrickFits():
 				resultField.textContent = "This brick does not fit";
 				resultField.style.color = "#1c540f";
+				break;
+			case checkIfBrickFits() === "empty":
+				resultField.textContent = "Please fill in all required fields";
+				resultField.style.color = "#fd0000";
 				break;
 		}
 	});
