@@ -1,19 +1,11 @@
+import { debounce } from "./utils";
+
 // Task 15
 // Native JS
 
 export const postInputOnPage = () => {
 	const inputField = document.querySelector("#phrase-input-field");
 	const list = document.querySelector("#list");
-
-	function debounce(func, timeout = 1000) {
-		let timerId;
-		return (...args) => {
-			clearTimeout(timerId);
-			timerId = setTimeout(() => {
-				func.apply(this, args);
-			}, timeout);
-		};
-	}
 
 	function postResult() {
 		let data = inputField.value;
@@ -72,7 +64,7 @@ export const postInputOnPage = () => {
 
 		function resetTimer() {
 			clearTimeout(time);
-			time = setTimeout(closeTab, 3000);
+			time = setTimeout(closeTab, 300000);
 		}
 	};
 

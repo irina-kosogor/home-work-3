@@ -313,22 +313,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "postInputOnPage": () => (/* binding */ postInputOnPage)
 /* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./js/modules/utils.js");
+
+
 // Task 15
 // Native JS
 
 const postInputOnPage = () => {
 	const inputField = document.querySelector("#phrase-input-field");
 	const list = document.querySelector("#list");
-
-	function debounce(func, timeout = 1000) {
-		let timerId;
-		return (...args) => {
-			clearTimeout(timerId);
-			timerId = setTimeout(() => {
-				func.apply(this, args);
-			}, timeout);
-		};
-	}
 
 	function postResult() {
 		let data = inputField.value;
@@ -362,12 +355,12 @@ const postInputOnPage = () => {
 		return count;
 	}
 
-	const alertCountA = debounce(() => {
+	const alertCountA = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.debounce)(() => {
 		alert(`Number of 'a' is ${countA()}`);
 		idleTime();
 	}, 500);
 
-	const processChange = debounce(() => {
+	const processChange = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.debounce)(() => {
 		postResult();
 		alertCountA();
 	});
@@ -387,7 +380,7 @@ const postInputOnPage = () => {
 
 		function resetTimer() {
 			clearTimeout(time);
-			time = setTimeout(closeTab, 3000);
+			time = setTimeout(closeTab, 300000);
 		}
 	};
 
@@ -978,6 +971,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "checkAllItemsTypes": () => (/* binding */ checkAllItemsTypes),
 /* harmony export */   "checkIfArray": () => (/* binding */ checkIfArray),
 /* harmony export */   "checkItemType": () => (/* binding */ checkItemType),
+/* harmony export */   "debounce": () => (/* binding */ debounce),
 /* harmony export */   "isEmptyObject": () => (/* binding */ isEmptyObject),
 /* harmony export */   "isObject": () => (/* binding */ isObject)
 /* harmony export */ });
@@ -1012,6 +1006,17 @@ function isEmptyObject(obj) {
 //Checks datatypes of primitive values
 function checkItemType(item, dataType) {
 	return typeof item === dataType;
+}
+
+// Debounce
+function debounce(func, timeout = 1000) {
+	let timerId;
+	return (...args) => {
+		clearTimeout(timerId);
+		timerId = setTimeout(() => {
+			func.apply(this, args);
+		}, timeout);
+	};
 }
 
 
