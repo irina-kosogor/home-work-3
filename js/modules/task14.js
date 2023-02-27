@@ -28,7 +28,7 @@ function checkForBrackets(str) {
 		}
 	}
 
-	return stack.length == 0;
+	return stack.length === 0;
 }
 
 export function showTextOnPage(str) {
