@@ -355,14 +355,14 @@ const postInputOnPage = () => {
 		return count;
 	}
 
-	const alertCountA = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.debounce)(() => {
+	const alertCountA = () => {
 		alert(`Number of 'a' is ${countA()}`);
 		idleTime();
-	}, 500);
+	};
 
 	const processChange = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.debounce)(() => {
 		postResult();
-		alertCountA();
+		setTimeout(alertCountA, 500);
 	});
 
 	const idleTime = () => {
@@ -374,12 +374,13 @@ const postInputOnPage = () => {
 
 		function closeTab() {
 			if (!confirm("Are you still here?")) {
-				window.close();;
+				window.close();
 			}
 		}
 
 		function resetTimer() {
 			clearTimeout(time);
+			//One potential issue is that the window.close() method is only allowed to be called from windows that were opened by a script using the window.open() method. As the window was not opened using this method, it is forbidden to close it using window.close(). Additionally, some browsers might prevent windows from being closed automatically, and will require the user to explicitly click a button to close the window.
 			time = setTimeout(closeTab, 300000);
 		}
 	};
