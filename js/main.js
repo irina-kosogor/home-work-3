@@ -18,14 +18,14 @@ import {removeABC} from './modules/task5-2';
 import {findUnique, findUniqueLodash} from './modules/task6';
 import {changeKeysWithValues} from './modules/task7';
 import {calculateInsuranceDifference} from './modules/task8';
-import {checkIfBrickFitsHole} from './modules/task9';
+import {checkIfBrickFits} from './modules/task9';
 import {getFileName} from './modules/task10';
 import {checkStrings, checkStringsLodash} from './modules/task11';
 import {composeArrays, composeArraysLodash} from './modules/task12';
 import {composeNewString} from './modules/task13';
 import {showTextOnPage} from './modules/task14';
 import {postInputOnPage} from './modules/task15';
-import {createPassword} from './modules/task16';
+import {generatePassword} from './modules/task16';
 import {changeElelementsOrder, changeElelementsOrderLodash} from './modules/task17';
 
 
@@ -113,7 +113,7 @@ console.groupEnd();
 // Task9 
 console.log("Task 9 --> implemented on the page");
 // Native JS:
-checkIfBrickFitsHole();
+checkIfBrickFits();
 
 // Task10 
 console.groupCollapsed("Task 10");
@@ -166,7 +166,7 @@ postInputOnPage();
 // Task16 
 console.log("Task 16 --> implemented on the page");
 //Native JS:
-createPassword();
+generatePassword();
 
 // Task17 
 console.groupCollapsed("Task 17");

@@ -402,71 +402,69 @@ const postInputOnPage = () => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createPassword": () => (/* binding */ createPassword)
+/* harmony export */   "generatePassword": () => (/* binding */ generatePassword)
 /* harmony export */ });
 // Task 16
 // Native JS
 
-const createPassword = () => {
-	const resultField = document.querySelector("#result-field");
-	const passLengthRange = document.querySelector("#pass-length-range");
-	const passLengthValue = document.querySelector("#pass-length-value");
-	const generateBtn = document.querySelector("#pass-generate-btn");
+const resultField = document.querySelector("#result-field");
+const passLengthRange = document.querySelector("#pass-length-range");
+const passLengthValue = document.querySelector("#pass-length-value");
+const generateBtn = document.querySelector("#pass-generate-btn");
 
-	passLengthRange.addEventListener("change", (e) => {
-		passLengthValue.innerText = e.target.value;
-	});
+passLengthRange.addEventListener("change", (e) => {
+	passLengthValue.innerText = e.target.value;
+});
 
-	generateBtn.addEventListener("click", () => {
-		const passwordLength = passLengthRange.value;
-		let generatedPass = "";
+generateBtn.addEventListener("click", () => {
+	const passwordLength = passLengthRange.value;
+	let generatedPass = "";
 
-		do {
-			generatedPass = generatePassword(passwordLength);
-		} while (!checkPassValidity(generatedPass));
-		resultField.value = generatedPass;
-	});
+	do {
+		generatedPass = generatePassword(passwordLength);
+	} while (!checkPassValidity(generatedPass));
+	resultField.value = generatedPass;
+});
 
-	function generatePassword(passwordLength) {
-		const generatedPassword = [];
+function generatePassword(passwordLength) {
+	const generatedPassword = [];
 
-		for (let i = 0; i < passwordLength; i++) {
-			generatedPassword.push(getRandomChar());
-		}
-
-		generatedPassword[Math.floor(Math.random() * passwordLength)] = "_";
-
-		return generatedPassword.join("");
+	for (let i = 0; i < passwordLength; i++) {
+		generatedPassword.push(getRandomChar());
 	}
 
-	function checkPassValidity(str) {
-		let countUpperChars = 0;
-		let countAllDigits = 0;
-		let countUnderScores = 0;
+	generatedPassword[Math.floor(Math.random() * passwordLength)] = "_";
 
-		for (let i = 0; i < str.length; i++) {
-			if (/[A-Z]/.test(str[i])) {
-				countUpperChars++;
-			}
-			if (/\d+/g.test(str[i])) {
-				countAllDigits++;
-			}
-			if (/_+/g.test(str[i])) {
-				countUnderScores++;
-			}
+	return generatedPassword.join("");
+}
+
+function checkPassValidity(str) {
+	let countUpperChars = 0;
+	let countAllDigits = 0;
+	let countUnderScores = 0;
+
+	for (let i = 0; i < str.length; i++) {
+		if (/[A-Z]/.test(str[i])) {
+			countUpperChars++;
 		}
-
-		if (/\d[2,]/.test(str)) {
-			return false;
+		if (/\d+/g.test(str[i])) {
+			countAllDigits++;
 		}
-
-		return countUpperChars >= 2 && countAllDigits <= 5 && countUnderScores <= 1;
+		if (/_+/g.test(str[i])) {
+			countUnderScores++;
+		}
 	}
 
-	function getRandomChar() {
-		return String.fromCharCode(Math.floor(Math.random() * 90) + 33);
+	if (/\d[2,]/.test(str)) {
+		return false;
 	}
-};
+
+	return countUpperChars >= 2 && countAllDigits <= 5 && countUnderScores <= 1;
+}
+
+function getRandomChar() {
+	return String.fromCharCode(Math.floor(Math.random() * 90) + 33);
+}
 
 
 /***/ }),
@@ -895,68 +893,62 @@ function calculateInsuranceDifference(obj, limit) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "checkIfBrickFitsHole": () => (/* binding */ checkIfBrickFitsHole)
+/* harmony export */   "checkIfBrickFits": () => (/* binding */ checkIfBrickFits)
 /* harmony export */ });
 // // Task 9
 // // Native JS
 
-const checkIfBrickFitsHole = () => {
-	const brickInputHeigth = document.querySelector("#brick-input-heigth");
-	const brickInputWidth = document.querySelector("#brick-input-width");
-	const brickInputDepth = document.querySelector("#brick-input-depth");
-	const holeInputHeigth = document.querySelector("#hole-input-heigth");
-	const holeInputWidth = document.querySelector("#hole-input-width");
-	const resultField = document.querySelector("#brick-result-block");
-	const btn = document.querySelector("#brick-check-btn");
+const resultField = document.querySelector("#brick-result-block");
+const btn = document.querySelector("#brick-check-btn");
 
-	function checkIfBrickFits() {
-		const a = brickInputHeigth.value;
-		const b = brickInputWidth.value;
-		const c = brickInputDepth.value;
-		const w = holeInputHeigth.value;
-		const h = holeInputWidth.value;
-		
-		if (
-			(a == null || a == "") ||
-			(b == null || b == "") ||
-			(c == null || c == "") ||
-			(w == null || w == "") ||
-			(h == null || h == "")
-		) {
-			return "empty";
-		}
-
-		if (
-			(w >= a && h >= b) ||
-			(w >= a && h >= c) ||
-			(w >= b && h >= a) ||
-			(w >= b && h >= c) ||
-			(w >= c && h >= a) ||
-			(w >= c && h >= b) 
-		) {
-			return true;
-		} else {
-			return false;
-		}
+function checkIfBrickFits() {
+	const a = document.querySelector("#brick-input-width").value;
+	const b = document.querySelector("#brick-input-width").value;
+	const c = document.querySelector("#brick-input-depth").value;
+	const w = document.querySelector("#hole-input-heigth").value;
+	const h = document.querySelector("#hole-input-width").value;
+	
+	if (
+		(a == null || a == "") ||
+		(b == null || b == "") ||
+		(c == null || c == "") ||
+		(w == null || w == "") ||
+		(h == null || h == "")
+	) {
+		return "empty";
 	}
 
-	btn.addEventListener("click", () => {
-		switch (true) {
-			case checkIfBrickFits():
-				resultField.textContent = "This brick fits!";
-				resultField.style.color = "#2E8EEE";
-				break;
-			case !checkIfBrickFits():
-				resultField.textContent = "This brick does not fit";
-				resultField.style.color = "#1c540f";
-				break;
-			case checkIfBrickFits() === "empty":
-				resultField.textContent = "Please fill in all required fields";
-				resultField.style.color = "#fd0000";
-				break;
-		}
-	});
-};
+	if (
+		(w >= a && h >= b) ||
+		(w >= a && h >= c) ||
+		(w >= b && h >= a) ||
+		(w >= b && h >= c) ||
+		(w >= c && h >= a) ||
+		(w >= c && h >= b) 
+	) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+btn.addEventListener("click", () => {
+	switch (true) {
+		case checkIfBrickFits():
+			resultField.textContent = "This brick fits!";
+			resultField.style.color = "#2E8EEE";
+			break;
+		case !checkIfBrickFits():
+			resultField.textContent = "This brick does not fit";
+			resultField.style.color = "#1c540f";
+			break;
+		case checkIfBrickFits() === "empty":
+			resultField.textContent = "Please fill in all required fields";
+			resultField.style.color = "#fd0000";
+			break;
+	}
+});
+
 
 
 /***/ }),
@@ -1221,7 +1213,7 @@ console.groupEnd();
 // Task9 
 console.log("Task 9 --> implemented on the page");
 // Native JS:
-(0,_modules_task9__WEBPACK_IMPORTED_MODULE_9__.checkIfBrickFitsHole)();
+(0,_modules_task9__WEBPACK_IMPORTED_MODULE_9__.checkIfBrickFits)();
 
 // Task10 
 console.groupCollapsed("Task 10");
@@ -1274,7 +1266,7 @@ console.log("Task 15 --> implemented on the page");
 // Task16 
 console.log("Task 16 --> implemented on the page");
 //Native JS:
-(0,_modules_task16__WEBPACK_IMPORTED_MODULE_16__.createPassword)();
+(0,_modules_task16__WEBPACK_IMPORTED_MODULE_16__.generatePassword)();
 
 // Task17 
 console.groupCollapsed("Task 17");
