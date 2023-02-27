@@ -907,7 +907,9 @@ function checkIfBrickFits() {
 	const c = document.querySelector("#brick-input-depth").value;
 	const w = document.querySelector("#hole-input-heigth").value;
 	const h = document.querySelector("#hole-input-width").value;
-	
+	const dimensions = [a, b, c].sort((x, y) => x - y);
+	const holeDimensions = [w, h].sort((x, y) => x - y);
+
 	if (
 		(a == null || a == "") ||
 		(b == null || b == "") ||
@@ -918,14 +920,7 @@ function checkIfBrickFits() {
 		return "empty";
 	}
 
-	if (
-		(w >= a && h >= b) ||
-		(w >= a && h >= c) ||
-		(w >= b && h >= a) ||
-		(w >= b && h >= c) ||
-		(w >= c && h >= a) ||
-		(w >= c && h >= b) 
-	) {
+	if (dimensions[0] <= holeDimensions[0] && dimensions[1] <= holeDimensions[1]) {
 		return true;
 	} else {
 		return false;
