@@ -9,6 +9,8 @@ export const postInputOnPage = () => {
 
 	function postResult() {
 		let data = inputField.value;
+		list.innerHTML = ""
+
 		const arrData = data
 			.split(" ")
 			.filter((item) => item !== "")
